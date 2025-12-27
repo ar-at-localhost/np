@@ -1,6 +1,6 @@
 [book]
 title = "np Docs"
-authors = ["ar124officialwd"]
+authors = ["ar-at-localhost"]
 description = "Documentation for np, a NixVim configuration for Project Oriented Development"
 
 [output.html]

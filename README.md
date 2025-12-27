@@ -26,7 +26,7 @@ Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors
 ## Project Oriented Development
 
 This project is a movement towards my concept of POD. See
-[POD](https://ar124officialwd.github.io/np/pod.html) for details on the Project
+[POD](https://ar-at-localhost.github.io/np/pod.html) for details on the Project
 Oriented Development concept.
 
 ## Usage
@@ -59,7 +59,7 @@ project per project, follow this pattern:
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
-    np.url = "github:ar124officialwd/np";  # or local path
+    np.url = "github:ar-at-localhost/np";  # or local path
   };
 
   outputs = { self, nixpkgs, nixvim, np, ... }: let

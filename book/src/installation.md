@@ -31,7 +31,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
-    np.url = "github:ar124officialwd/np";
+    np.url = "github:ar-at-localhost/np";
   };
 
   outputs = { self, nixpkgs, nixvim, np, ... }: let
