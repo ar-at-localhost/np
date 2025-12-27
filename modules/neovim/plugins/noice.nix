@@ -1,5 +1,5 @@
 {...}: {
-  programs.nixvim.plugins.noice = {
+  plugins.noice = {
     settings = {
       presets = {
         bottom_search = false;

@@ -1,5 +1,5 @@
 {...}: {
-  programs.nixvim.plugins.none-ls = {
+  plugins.none-ls = {
     enableLspFormat = false;
     sources = {
       diagnostics.markdownlint.enable = true;

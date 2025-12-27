@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  programs.nixvim.plugins.treesitter = {
-    folding = true;
+  plugins.treesitter = {
+    folding.enable = true;
     nixvimInjections = true;
 
     grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [

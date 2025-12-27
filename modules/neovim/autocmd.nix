@@ -1,5 +1,5 @@
 {
-  programs.nixvim.autoCmd = [
+  autoCmd = [
     # --------- Restore session --------- #
     {
       event = "VimEnter";

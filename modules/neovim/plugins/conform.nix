@@ -6,7 +6,7 @@
     stop_on_first = true;
   };
 in {
-  programs.nixvim.plugins.conform-nvim = {
+  plugins.conform-nvim = {
     settings = {
       formatters_by_ft = {
         bash = ["shfmt"];

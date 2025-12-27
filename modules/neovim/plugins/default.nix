@@ -16,7 +16,7 @@
     ./which-key.nix
   ];
 
-  programs.nixvim.plugins = {
+  plugins = {
     blink-cmp.enable = true;
     bufferline.enable = true;
     colorizer.enable = true;
@@ -54,7 +54,7 @@
     which-key.enable = true;
   };
 
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+  extraPlugins = with pkgs.vimPlugins; [
     plenary-nvim
     nvim-lsp-file-operations
   ];

@@ -1,3 +1,3 @@
 {...}: {
-  programs.nixvim.plugins.fzf-lua.settings = {};
+  plugins.fzf-lua.settings = {};
 }

@@ -1,6 +1,6 @@
 {...}: {
   # FIXME: Convert to NixVim Plugin Settings Attrset
-  programs.nixvim.plugins.edgy.settings.__raw = ''
+  plugins.edgy.settings.__raw = ''
     (function()
       local opts = {
         bottom = {

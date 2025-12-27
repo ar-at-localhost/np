@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins.snacks.settings = {
+  plugins.snacks.settings = {
     bufdelete.enabled = true;
     dim.enabled = true;
     indent.enabled = true;

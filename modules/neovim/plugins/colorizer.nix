@@ -1,5 +1,5 @@
 {...}: {
-  programs.nixvim.plugins.colorizer.settings = {
+  plugins.colorizer.settings = {
     user_commands = true;
     user_default_options = {
       names = false;

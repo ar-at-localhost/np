@@ -1,5 +1,5 @@
 {...}: {
-  programs.nixvim.plugins.lualine.settings = {
+  plugins.lualine.settings = {
     theme = "catppuccin";
 
     sections = {

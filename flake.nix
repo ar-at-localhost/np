@@ -7,18 +7,31 @@
     alejandra.url = "github:kamadorueda/alejandra";
   };
 
-  outputs = {nixpkgs, ...}: let
+  outputs = {
+    nixpkgs,
+    nixvim,
+    ...
+  }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    nixvimModules = {
-      base = import ./modules/neovim;
-    };
-
     formatter.${system} = pkgs.alejandra;
 
     devShells.${system}.default = pkgs.mkShell {
-      packages = [pkgs.lefthook];
+      packages = [
+        pkgs.lefthook
+
+        (nixvim.legacyPackages.${system}.makeNixvimWithModule
+          {
+            inherit pkgs;
+            module = {
+              imports = [
+                ./modules/neovim
+                ./nix/nixvim.nix
+              ];
+            };
+          })
+      ];
 
       shellHook = ''
         if [ ! -f .git/hooks/pre-commit ]; then

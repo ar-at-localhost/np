@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins.grug-far.settings = {
+  plugins.grug-far.settings = {
     headerMaxWidth = 80;
   };
 }

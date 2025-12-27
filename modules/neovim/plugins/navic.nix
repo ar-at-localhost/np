@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins.navic.settings = {
+  plugins.navic.settings = {
     lsp.auto_attach = true;
   };
 }

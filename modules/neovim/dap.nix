@@ -1,9 +1,9 @@
 {pkgs, ...}: {
-  programs.nixvim.extraPackages = [
+  extraPackages = [
     pkgs.nodejs
   ];
 
-  programs.nixvim.plugins.dap = {
+  plugins.dap = {
     signs = {
       dapBreakpoint = {
         text = "●";

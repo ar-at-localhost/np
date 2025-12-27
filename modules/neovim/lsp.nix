@@ -1,28 +1,27 @@
 {...}: {
-  programs.nixvim.lsp.enable = true;
-  programs.nixvim.lsp.inlayHints.enable = true;
-  programs.nixvim.lsp.servers.basedpyright.enable = true;
+  lsp.inlayHints.enable = true;
+  lsp.servers.basedpyright.enable = true;
 
-  programs.nixvim.lsp.servers.biome.config = {
+  lsp.servers.biome.config = {
     enable = true;
     require_config_file = true;
   };
 
-  programs.nixvim.lsp.servers.cssls.enable = true;
-  programs.nixvim.lsp.servers.dockerls.enable = true;
-  programs.nixvim.lsp.servers.docker_compose_ls.enable = true;
-  programs.nixvim.lsp.servers.eslint.enable = true;
-  programs.nixvim.lsp.servers.html.enable = true;
-  programs.nixvim.lsp.servers.lua_ls.enable = true;
-  programs.nixvim.lsp.servers.jsonls.enable = true;
-  programs.nixvim.lsp.servers.marksman.enable = true;
-  programs.nixvim.lsp.servers.nil_ls.enable = true;
-  programs.nixvim.lsp.servers.tailwindcss.enable = true;
-  programs.nixvim.lsp.servers.taplo.enable = true;
-  programs.nixvim.lsp.servers.vtsls.enable = true;
-  programs.nixvim.lsp.servers.yamlls.enable = true;
+  lsp.servers.cssls.enable = true;
+  lsp.servers.dockerls.enable = true;
+  lsp.servers.docker_compose_ls.enable = true;
+  lsp.servers.eslint.enable = true;
+  lsp.servers.html.enable = true;
+  lsp.servers.lua_ls.enable = true;
+  lsp.servers.jsonls.enable = true;
+  lsp.servers.marksman.enable = true;
+  lsp.servers.nil_ls.enable = true;
+  lsp.servers.tailwindcss.enable = true;
+  lsp.servers.taplo.enable = true;
+  lsp.servers.vtsls.enable = true;
+  lsp.servers.yamlls.enable = true;
 
-  programs.nixvim.lsp.keymaps = [
+  lsp.keymaps = [
     {
       key = "cd";
       lspBufAction = "definition";
@@ -41,7 +40,7 @@
     }
   ];
 
-  programs.nixvim.diagnostic.settings = {
+  diagnostic.settings = {
     underline = true;
     update_in_insert = false;
     severity_sort = true;

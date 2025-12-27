@@ -1,5 +1,5 @@
 {
-  programs.nixvim.opts = {
+  opts = {
     mouse = "";
     number = true;
     relativenumber = true;

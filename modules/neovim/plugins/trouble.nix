@@ -1,3 +1,3 @@
 {
-  programs.nixvim.plugins.trouble.settings = {};
+  plugins.trouble.settings = {};
 }
