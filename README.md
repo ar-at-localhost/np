@@ -25,8 +25,9 @@ Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors
 
 ## Project Oriented Development
 
-This project is a movement towards my concept of POD.
-See [POD.md](./POD.md) for details on the Project Oriented Development concept.
+This project is a movement towards my concept of POD. See
+[POD](https://ar124officialwd.github.io/np/pod.html) for details on the Project
+Oriented Development concept.
 
 ## Usage
 
