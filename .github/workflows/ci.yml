@@ -22,7 +22,7 @@ jobs:
       - name: Run `nix build`
         run: nix build .
 
-  deploy:
+  deploy-docs:
     if: github.ref == 'refs/heads/main'
     needs: check
     runs-on: ubuntu-22.04
