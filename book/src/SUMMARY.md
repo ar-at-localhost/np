@@ -4,6 +4,7 @@
 - [Project Oriented Development](./pod.md)
 - [Installation](./installation.md)
 - [Usage](./usage.md)
+- [Default Experience](./default-experience.md)
 - [Configuration](./configuration.md)
 - [Presets](./presets/README.md)
   - [C/C++](./presets/cpp.md)
