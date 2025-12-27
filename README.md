@@ -119,6 +119,8 @@ This launches Neovim with the minimal base setup for a quick test.
 
 Yes, [some are here](./ss).
 
+![Editor Screenshot](./ss/editor.png)
+
 ## FAQ
 
 > Which language(s) support is configured out of the box?
