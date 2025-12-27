@@ -3,3 +3,7 @@
 - [ ] Clean to be as mimimal as possible
   - [ ] Limit default LSP support to Nix & Lua only.
 - [ ] Create docs
+- [ ] Add language presets
+  - [ ] JavaScript / TypeScript
+  - [ ] Rust
+  - [ ] Python

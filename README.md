@@ -99,6 +99,13 @@ Neovim instance per project.
 
 Yes, [some are here](./ss).
 
+## FAQ
+
+> Will you offer some sort of presets, such as quick start for a language?
+
+**Answer**: Yes, but as separate modules, which you may import to get started.
+These will be initiated soon.
+
 ## Roadmap
 
 See [Roadmap](./ROADMAP.md).
