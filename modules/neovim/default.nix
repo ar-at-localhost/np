@@ -9,4 +9,10 @@
     ./theme.nix
     ./tree-sitter.nix
   ];
+
+  globals.mapleader = " ";
+
+  clipboard = {
+    register = "unnamedplus";
+  };
 }
