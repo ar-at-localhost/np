@@ -4,7 +4,9 @@
 >
 > - `np` is NeoVim, NixVim, \_Next_Vim
 > - `np` is NeoVim Pod, NixVim Pod, NextVim Pod
-> - `np` is NeoPod, No a Problem, Project Oriented Development
+> - `np` is NeoPod, for Project Oriented Development
+> - `np` is No Pollution - Setting up Neovim for project? No problem.
+> - `np` is No Problem - when Setting up Neovim for a project.
 
 Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors
 
@@ -134,10 +136,13 @@ Yes, [some are here](./ss).
 
 ## FAQ
 
-> What languages are supported?
+> Which language(s) support is configured out of the box?
 
-**Answer**: Out of the box, only Nix, Markdown, TOML/YAML, Bash, and Lua.
-Additional languages are available via opt-in presets for project-specific needs.
+**Answer**: Only Nix, Markdown, TOML/YAML, Bash, and Lua.
+
+> Which languages are supported?
+
+**Answer**: Many languages are provided as modules for opt-in basic support.
 See [presets](./modules/presets/) for available options.
 
 ## Roadmap
