@@ -93,6 +93,39 @@ This pattern keeps your project configuration organized and allows Nix to merge
 the base `np` module with your project-specific overrides, creating a tailored
 Neovim instance per project.
 
+### Using Presets
+
+For additional language support, import presets into your `nix/nixvim.nix`:
+
+```nix
+{ inputs, ... }:
+
+{
+  imports = [
+    inputs.np.nixvimModules.base
+    inputs.np.nixvimModules.presets.python  # Adds Python LSP, formatters, and tree-sitter
+    inputs.np.nixvimModules.presets.rust    # Adds Rust LSP and tree-sitter
+  ];
+
+  # Your project-specific overrides
+  plugins.lsp.servers.nil_ls.enable = false;  # Example override
+}
+```
+
+Available presets: `cpp` (C/C++ with clangd), `docker` (Docker with dockerls),
+`javascript` (JS/TS with biome/eslint), `make`, `python`, `rust`, `sql`, `web`
+(full web stack), `xml`.
+
+## Quick Preview
+
+To try `np` without setting up a project, run the base configuration:
+
+```bash
+nix run .#np
+```
+
+This launches Neovim with the minimal base setup for a quick test.
+
 ## Default Experience
 
 ### Screenshots?
@@ -101,10 +134,11 @@ Yes, [some are here](./ss).
 
 ## FAQ
 
-> Will you offer some sort of presets, such as quick start for a language?
+> What languages are supported?
 
-**Answer**: Yes, but as separate modules, which you may import to get started.
-These will be initiated soon.
+**Answer**: Out of the box, only Nix, Markdown, TOML/YAML, Bash, and Lua.
+Additional languages are available via opt-in presets for project-specific needs.
+See [presets](./modules/presets/) for available options.
 
 ## Roadmap
 
