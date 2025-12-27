@@ -47,6 +47,21 @@
       };
     });
 
+    nixvimModules = {
+      base = ./modules/neovim;
+      presets = {
+        cpp = ./modules/presets/cpp.nix;
+        docker = ./modules/presets/docker.nix;
+        javascript = ./modules/presets/javascript.nix;
+        make = ./modules/presets/make.nix;
+        python = ./modules/presets/python.nix;
+        rust = ./modules/presets/rust.nix;
+        sql = ./modules/presets/sql.nix;
+        web = ./modules/presets/web.nix;
+        xml = ./modules/presets/xml.nix;
+      };
+    };
+
     devShells = forEachSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
