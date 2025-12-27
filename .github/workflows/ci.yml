@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: "write"
+      contents: "read"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flake-checker-action@main
+      - name: Lint Nix code
+        run: nix run nixpkgs#alejandra -- --check .
+      - name: Run `nix build`
+        run: nix build .
