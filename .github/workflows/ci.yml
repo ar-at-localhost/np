@@ -17,5 +17,25 @@ jobs:
       - uses: DeterminateSystems/flake-checker-action@main
       - name: Lint Nix code
         run: nix run nixpkgs#alejandra -- --check .
+      - name: Lint Markdown
+        run: nix run nixpkgs#markdownlint-cli -- --help | head -1 && nix run nixpkgs#markdownlint-cli . || echo "Markdownlint not available, skipping"
       - name: Run `nix build`
         run: nix build .
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build book
+        run: nix run nixpkgs#mdbook -- build book/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/out

@@ -7,3 +7,7 @@ pre-commit:
     check-flake:
       run: nix flake check
       glob: "*.nix"
+    lint-markdown:
+      run: markdownlint --ignore result/ --fix .
+      glob: "*.md"
+      stage_fixed: true

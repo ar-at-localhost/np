@@ -21,7 +21,7 @@ Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors
 ---
 
 > [!WARNING]
-> Docs are missing yet.
+> Docs are AI generated yet - might be in-accurate.
 
 ## Project Oriented Development
 

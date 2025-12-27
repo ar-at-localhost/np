@@ -39,6 +39,8 @@
     devShells.${system}.default = pkgs.mkShell {
       packages = [
         pkgs.lefthook
+        pkgs.markdownlint-cli
+        pkgs.mdbook
 
         (nixvim.legacyPackages.${system}.makeNixvimWithModule
           {

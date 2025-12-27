@@ -1,0 +1,9 @@
+[book]
+title = "np Docs"
+authors = ["ar124officialwd"]
+description = "Documentation for np, a NixVim configuration for Project Oriented Development"
+
+[output.html]
+
+[build]
+build-dir = "out"

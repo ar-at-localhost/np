@@ -10,4 +10,3 @@ Any kind of contribution is welcome.
 
 2. **Keybindings**: Keys must be grouped logically, prioritizing usability over
    traditional conventions. This may or may not align with standard traditions.
-
