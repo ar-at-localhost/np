@@ -1,9 +1,12 @@
-# Roadmap of NixVimPod
+# Roadmap
 
 - [x] Clean to be as minimal as possible
-  - [x] Limit default LSP support to base languages
-        (Nix, Lua, Markdown, TOML/YAML, Bash, JSON).
-- [ ] Create comprehensive docs
+  - [x] base languages supported
+    - [x] Nix
+    - [x] Lua
+    - [x] Markdown
+    - [x] TOML/YAML
+- [x] Create comprehensive docs
 - [x] Add language presets
   - [x] JavaScript / TypeScript
   - [x] Rust
@@ -12,5 +15,7 @@
   - [x] Docker
   - [x] Web (full stack)
   - [x] Others (make, sql, xml)
-- [ ] Add more presets (e.g., Go, Java)
+- [ ] Add more presets
+  - [ ] Go
 - [ ] Improve preset documentation and examples
+- [ ] Support other NixOS channels, than current Unstable

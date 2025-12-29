@@ -37,10 +37,10 @@ project per project, follow this pattern:
 - Create `nix/nixvim.nix` in your project for tailoring options:
 
 ```nix
-{ inputs, ... }:
+{ np, ... }:
 
 {
-  imports = [ inputs.np.nixvimModules.base ];
+  imports = [ np.nixvimModules.base ];
 
   # Your project-specific NixVim module overrides
   plugins = {
@@ -52,39 +52,41 @@ project per project, follow this pattern:
 }
 ```
 
-- In your project's `flake.nix`, build and include the tailored Neovim as a dependency:
+- In your project's `flake.nix`, build and include the tailored Neovim as a dependency.
 
-```nix
-{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
-    np.url = "github:ar-at-localhost/np";  # or local path
-  };
+  > [!IMPORTANT]
+  > `np` is built on `nixpkgs-unstable` and requires its consumer to provide
+  > packages from it. Using a stable version of `nixpkgs` will result in errors.
 
-  outputs = { self, nixpkgs, nixvim, np, ... }: let
-    system = "x86_64-linux";  # adjust for your system
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    devShells.${system}.default = pkgs.mkShell {
-      packages = [
-        (nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          inherit pkgs;
-
-          module = {
-            imports = [
-              ./modules/neovim
-              ./nix/nixvim.nix
-            ];
-          };
-
-          extraSpecialArgs = {stdenv = pkgs.stdenv;};
-        })
-      ];
+  ```nix
+  {
+    inputs = {
+      # np requires nixpkgs-unstable.
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+      nixvim.url = "github:nix-community/nixvim";
+      np.url = "github:ar-at-localhost/np"; # or local path
     };
-  };
-}
-```
+
+    outputs = { self, nixpkgs, nixvim, np, ... }: let
+      system = "x86_64-linux"; # adjust for your system
+      # Use legacyPackages from nixpkgs-unstable.
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      devShells.${system}.default = pkgs.mkShell {
+        packages = [
+          # Other development packages...
+
+          # Make nixvim with our unstable pkgs and the project-specific module.
+          (nixvim.legacyPackages.${system}.makeNixvimWithModule {
+            inherit pkgs;
+            module = ./nix/nixvim.nix;
+            extraSpecialArgs = { inherit np; };
+          })
+        ];
+      };
+    };
+  }
+  ```
 
 This pattern keeps your project configuration organized and allows Nix to merge
 the base `np` module with your project-specific overrides, creating a tailored
@@ -95,13 +97,13 @@ Neovim instance per project.
 For additional language support, import presets into your `nix/nixvim.nix`:
 
 ```nix
-{ inputs, ... }:
+{ np, ... }:
 
 {
   imports = [
-    inputs.np.nixvimModules.base
-    inputs.np.nixvimModules.presets.python  # Adds Python LSP, formatters, and tree-sitter
-    inputs.np.nixvimModules.presets.rust    # Adds Rust LSP and tree-sitter
+    np.nixvimModules.base
+    np.nixvimModules.presets.python  # Adds Python LSP, formatters, and tree-sitter
+    np.nixvimModules.presets.rust    # Adds Rust LSP and tree-sitter
   ];
 
   # Your project-specific overrides

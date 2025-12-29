@@ -3,6 +3,8 @@
 ## Prerequisites
 
 - Nix with flakes enabled.
+- `nixpkgs-unstable`: `np` is developed against `nixpkgs-unstable` and requires
+  packages from it.
 - Basic knowledge of Nix and NixVim.
 
 ## Quick Setup
@@ -12,12 +14,12 @@
 2. Create `nix/nixvim.nix` in your project:
 
 ```nix
-{ inputs, ... }:
+{ np, ... }:
 
 {
   imports = [
-    inputs.np.nixvimModules.base
-    inputs.np.nixvimModules.presets.javascript
+    np.nixvimModules.base
+    np.nixvimModules.presets.javascript
     # Add more presets as needed
   ];
 
@@ -27,37 +29,39 @@
 
 1. In `flake.nix`, build Neovim:
 
-```nix
-{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
-    np.url = "github:ar-at-localhost/np";
-  };
+   > [!IMPORTANT]
+   > `np` is built on `nixpkgs-unstable` and requires its consumer to provide
+   > packages from it. Using a stable version of `nixpkgs` will result in errors.
 
-  outputs = { self, nixpkgs, nixvim, np, ... }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    devShells.${system}.default = pkgs.mkShell {
-      packages = [
-        (nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          inherit pkgs;
+   ```nix
+   {
+     inputs = {
+       # np requires nixpkgs-unstable.
+       nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+       nixvim.url = "github:nix-community/nixvim";
+       np.url = "github:ar-at-localhost/np";
+     };
 
-          module = {
-            imports = [
-              ./modules/neovim
-              ./nix/nixvim.nix
-            ];
-          };
+     outputs = { self, nixpkgs, nixvim, np, ... }: let
+       system = "x86_64-linux"; # adjust for your system
+       # Use legacyPackages from nixpkgs-unstable.
+       pkgs = nixpkgs.legacyPackages.${system};
+     in {
+       devShells.${system}.default = pkgs.mkShell {
+         packages = [
+           # Other development packages...
 
-          extraSpecialArgs = {stdenv = pkgs.stdenv;};
-        })
-      ];
-    };
-  };
-}
-```
+           # Make nixvim with our unstable pkgs and the project-specific module.
+           (nixvim.legacyPackages.${system}.makeNixvimWithModule {
+             inherit pkgs;
+             module = ./nix/nixvim.nix;
+             extraSpecialArgs = { inherit np; };
+           })
+         ];
+       };
+     };
+   }
+   ```
 
 1. Enter the shell: `nix develop`
 

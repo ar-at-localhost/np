@@ -18,3 +18,4 @@
 - [ ] Add more presets
   - [ ] Go
 - [ ] Improve preset documentation and examples
+- [ ] Support other NixOS channels, than current Unstable
