@@ -223,6 +223,8 @@ specific configurations --- and don't pollute your OS or Home either.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
 <ul>
 <li>Nix with flakes enabled.</li>
+<li><code>nixpkgs-unstable</code>: <code>np</code> is developed against <code>nixpkgs-unstable</code> and requires
+packages from it.</li>
 <li>Basic knowledge of Nix and NixVim.</li>
 </ul>
 <h2 id="quick-setup"><a class="header" href="#quick-setup">Quick Setup</a></h2>
@@ -234,12 +236,12 @@ specific configurations --- and don't pollute your OS or Home either.</p>
 <p>Create <code>nix/nixvim.nix</code> in your project:</p>
 </li>
 </ol>
-<pre><code class="language-nix">{ inputs, ... }:
+<pre><code class="language-nix">{ np, ... }:
 
 {
   imports = [
-    inputs.np.nixvimModules.base
-    inputs.np.nixvimModules.presets.javascript
+    np.nixvimModules.base
+    np.nixvimModules.presets.javascript
     # Add more presets as needed
   ];
 
@@ -247,78 +249,85 @@ specific configurations --- and don't pollute your OS or Home either.</p>
 }
 </code></pre>
 <ol>
-<li>In <code>flake.nix</code>, build Neovim:</li>
-</ol>
+<li>
+<p>In <code>flake.nix</code>, build Neovim:</p>
+<blockquote>
+<p>[!IMPORTANT]
+<code>np</code> is built on <code>nixpkgs-unstable</code> and requires its consumer to provide
+packages from it. Using a stable version of <code>nixpkgs</code> will result in errors.</p>
+</blockquote>
 <pre><code class="language-nix">{
   inputs = {
+    # np requires nixpkgs-unstable.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     np.url = "github:ar-at-localhost/np";
   };
 
   outputs = { self, nixpkgs, nixvim, np, ... }: let
-    system = "x86_64-linux";
+    system = "x86_64-linux"; # adjust for your system
+    # Use legacyPackages from nixpkgs-unstable.
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = [
+        # Other development packages...
+
+        # Make nixvim with our unstable pkgs and the project-specific module.
         (nixvim.legacyPackages.${system}.makeNixvimWithModule {
           inherit pkgs;
-
-          module = {
-            imports = [
-              ./modules/neovim
-              ./nix/nixvim.nix
-            ];
-          };
-
-          extraSpecialArgs = {stdenv = pkgs.stdenv;};
+          module = ./nix/nixvim.nix;
+          extraSpecialArgs = { inherit np; };
         })
       ];
     };
   };
 }
 </code></pre>
-<ol>
-<li>Enter the shell: <code>nix develop</code></li>
+</li>
+<li>
+<p>Enter the shell: <code>nix develop</code></p>
+</li>
 </ol>
 <p>For a quick preview of <code>np</code>: <code>nix run .#np</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="usage"><a class="header" href="#usage">Usage</a></h1>
-<h2 id="base-configuration"><a class="header" href="#base-configuration">Base Configuration</a></h2>
-<p>Import <code>inputs.np.nixvimModules.base</code> for the minimal setup supporting Nix, Lua,
-JSON, Bash, YAML/TOML, and Markdown.</p>
-<h2 id="using-presets"><a class="header" href="#using-presets">Using Presets</a></h2>
-<p>Add presets for additional languages:</p>
-<pre><code class="language-nix">imports = [
-  inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.python
-  inputs.np.nixvimModules.presets.rust
-];
-</code></pre>
-<h2 id="running-neovim"><a class="header" href="#running-neovim">Running Neovim</a></h2>
-<ul>
-<li>In your project's dev shell: <code>nvim</code></li>
-<li>Preview base <code>np</code>: <code>nix run .#np</code></li>
-</ul>
-<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
-<h3 id="python-project"><a class="header" href="#python-project">Python Project</a></h3>
-<pre><code class="language-nix">{ inputs, ... }:
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<p>To configure <code>np</code>, create a <code>nix/nixvim.nix</code> file in your project. This file is
+a NixVim module where you can import <code>np</code>'s base configuration, add language
+presets, and apply your own overrides.</p>
+<p>Here is an example for a Python project:</p>
+<pre><code class="language-nix"># nix/nixvim.nix
+{ np, ... }:
 
 {
   imports = [
-    inputs.np.nixvimModules.base
-    inputs.np.nixvimModules.presets.python
+    np.nixvimModules.base
+    np.nixvimModules.presets.python
   ];
 
   # Add project-specific settings
   plugins.lsp.servers.nil_ls.enable = false;
 }
 </code></pre>
+<p>Remember to pass the <code>np</code> flake input to the module in your project's <code>flake.nix</code>
+using <code>extraSpecialArgs</code>. See the <a href="./installation.html">Installation</a> guide for
+the full <code>flake.nix</code> setup.</p>
+<h2 id="running-neovim"><a class="header" href="#running-neovim">Running Neovim</a></h2>
+<ul>
+<li>In your project's dev shell: <code>nvim</code></li>
+<li>Preview base <code>np</code>: <code>nix run .#np</code></li>
+</ul>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
 <h3 id="full-stack-web-project"><a class="header" href="#full-stack-web-project">Full-Stack Web Project</a></h3>
-<pre><code class="language-nix">imports = [
-  inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.web  # Includes JS/TS, HTML, CSS, etc.
-];
+<pre><code class="language-nix"># nix/nixvim.nix
+{ np, ... }:
+
+{
+  imports = [
+    np.nixvimModules.base
+    np.nixvimModules.presets.web  # Includes JS/TS, HTML, CSS, etc.
+  ];
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="default-experience"><a class="header" href="#default-experience">Default Experience</a></h1>
 <p>This page describes the out-of-the-box experience when using <code>np</code> without any
@@ -469,7 +478,7 @@ Which-key to explore.</p>
 ];
 </code></pre>
 <p>This keeps your setup clean and reproducible.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h1>
 <h2 id="overriding-options"><a class="header" href="#overriding-options">Overriding Options</a></h2>
 <p>Since <code>np</code> uses standard NixVim, customize by overriding options:</p>
 <pre><code class="language-nix">{
@@ -740,6 +749,8 @@ Go</li>
 </li>
 <li><input disabled="" type="checkbox"/>
 Improve preset documentation and examples</li>
+<li><input disabled="" type="checkbox"/>
+Support other NixOS channels, than current Unstable</li>
 </ul>
 
                     </main>

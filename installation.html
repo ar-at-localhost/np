@@ -179,6 +179,8 @@
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
 <ul>
 <li>Nix with flakes enabled.</li>
+<li><code>nixpkgs-unstable</code>: <code>np</code> is developed against <code>nixpkgs-unstable</code> and requires
+packages from it.</li>
 <li>Basic knowledge of Nix and NixVim.</li>
 </ul>
 <h2 id="quick-setup"><a class="header" href="#quick-setup">Quick Setup</a></h2>
@@ -190,12 +192,12 @@
 <p>Create <code>nix/nixvim.nix</code> in your project:</p>
 </li>
 </ol>
-<pre><code class="language-nix">{ inputs, ... }:
+<pre><code class="language-nix">{ np, ... }:
 
 {
   imports = [
-    inputs.np.nixvimModules.base
-    inputs.np.nixvimModules.presets.javascript
+    np.nixvimModules.base
+    np.nixvimModules.presets.javascript
     # Add more presets as needed
   ];
 
@@ -203,40 +205,45 @@
 }
 </code></pre>
 <ol>
-<li>In <code>flake.nix</code>, build Neovim:</li>
-</ol>
+<li>
+<p>In <code>flake.nix</code>, build Neovim:</p>
+<blockquote>
+<p>[!IMPORTANT]
+<code>np</code> is built on <code>nixpkgs-unstable</code> and requires its consumer to provide
+packages from it. Using a stable version of <code>nixpkgs</code> will result in errors.</p>
+</blockquote>
 <pre><code class="language-nix">{
   inputs = {
+    # np requires nixpkgs-unstable.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     np.url = "github:ar-at-localhost/np";
   };
 
   outputs = { self, nixpkgs, nixvim, np, ... }: let
-    system = "x86_64-linux";
+    system = "x86_64-linux"; # adjust for your system
+    # Use legacyPackages from nixpkgs-unstable.
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = [
+        # Other development packages...
+
+        # Make nixvim with our unstable pkgs and the project-specific module.
         (nixvim.legacyPackages.${system}.makeNixvimWithModule {
           inherit pkgs;
-
-          module = {
-            imports = [
-              ./modules/neovim
-              ./nix/nixvim.nix
-            ];
-          };
-
-          extraSpecialArgs = {stdenv = pkgs.stdenv;};
+          module = ./nix/nixvim.nix;
+          extraSpecialArgs = { inherit np; };
         })
       ];
     };
   };
 }
 </code></pre>
-<ol>
-<li>Enter the shell: <code>nix develop</code></li>
+</li>
+<li>
+<p>Enter the shell: <code>nix develop</code></p>
+</li>
 </ol>
 <p>For a quick preview of <code>np</code>: <code>nix run .#np</code></p>
 
