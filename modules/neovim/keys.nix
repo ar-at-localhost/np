@@ -647,6 +647,72 @@
       action = "<cmd>DapStepOver<CR>";
       options.desc = "Debug: Step Over";
     }
+    {
+      key = "<leader>dp";
+      mode = "n";
+      options.desc = "DAP: Pick & run (Buffer)";
+
+      action.__raw = ''
+        function ()
+          local dap = require("dap")
+
+          local ft = vim.bo.filetype
+          local configs = dap.configurations[ft] or {}
+
+          if #configs == 0 then
+            print("No DAP configurations for filetype: " .. ft)
+            return
+          end
+
+          vim.ui.select(configs, {
+            prompt = "Select DAP Configuration (" .. ft .. ")",
+            format_item = function(item)
+              return item.name
+            end,
+          }, function(choice)
+            if choice then
+              dap.run(choice)
+            end
+          end)
+        end
+      '';
+    }
+    {
+      key = "<leader>dP";
+      mode = "n";
+      options.desc = "DAP: Pick & run (Workspace)";
+
+      action.__raw = ''
+        function ()
+          local dap = require("dap")
+          local all_configs = {}
+
+          -- Gather all configurations from all filetypes
+          for ft, configs in pairs(dap.configurations) do
+            for _, config in ipairs(configs) do
+              table.insert(all_configs, { name = config.name, config = config })
+            end
+          end
+
+          if #all_configs == 0 then
+            print("No DAP configurations available")
+            return
+          end
+
+          -- Use vim.ui.select
+          vim.ui.select(all_configs, {
+            prompt = "Select DAP Configuration",
+            format_item = function(item)
+              return item.name
+            end,
+          }, function(choice)
+            if choice then
+              dap.run(choice.config)
+            end
+          end)
+        end
+      '';
+    }
 
     # --------- Misc --------- #
     {
