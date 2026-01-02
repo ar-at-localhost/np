@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # FIXME: Convert to NixVim Plugin Settings Attrset
   plugins.edgy.settings.__raw = ''
     (function()

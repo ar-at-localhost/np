@@ -10,59 +10,60 @@ in {
     pkgs.nodejs
   ];
 
-  lsp.servers.biome = {
-    enable = true;
-    config = {
-      require_config_file = true;
-    };
-  };
-  lsp.servers.eslint.enable = true;
-  lsp.servers.vtsls.enable = true;
-
-  plugins.conform-nvim = {
-    settings = {
-      formatters_by_ft = {
-        javascript = web;
-        javascriptreact = web;
-        typescript = web;
-        typescriptreact = web;
+  lsp = {
+    servers = {
+      biome = {
+        enable = true;
+        config.require_config_file = true;
       };
+
+      eslint.enable = true;
+      vtsls.enable = true;
     };
   };
 
-  plugins.dap = {
-    adapters = {
-      servers.pwa-node = {
-        host = "localhost";
-        port = "\${port}";
+  plugins = {
+    conform-nvim.settings.formatters_by_ft = {
+      javascript = web;
+      javascriptreact = web;
+      typescript = web;
+      typescriptreact = web;
+    };
 
-        executable = {
-          command = "${pkgs.vscode-js-debug}/bin/js-debug";
+    dap = {
+      adapters = {
+        servers.pwa-node = {
+          host = "localhost";
+          port = "\${port}";
 
-          args = [
-            "\${port}"
-          ];
+          executable = {
+            command = "${pkgs.vscode-js-debug}/bin/js-debug";
+
+            args = [
+              "\${port}"
+            ];
+          };
         };
       };
+
+      configurations = {
+        javascript = [
+          {
+            type = "pwa-node";
+            request = "launch";
+            name = "Launch file";
+            program = "\${file}";
+            cwd = "\${workspaceFolder}";
+            port = 9229;
+          }
+        ];
+      };
     };
 
-    configurations = {
-      javascript = [
-        {
-          type = "pwa-node";
-          request = "launch";
-          name = "Launch file";
-          program = "\${file}";
-          cwd = "\${workspaceFolder}";
-          port = 9229;
-        }
-      ];
-    };
+    treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      javascript
+      tsx
+      typescript
+    ];
   };
-
-  plugins.treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-    javascript
-    tsx
-    typescript
-  ];
 }

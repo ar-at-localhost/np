@@ -1,4 +1,4 @@
-{...}: {
+_: {
   plugins.blink-cmp.settings = {
     appearance = {
       nerd_font_variant = "normal";

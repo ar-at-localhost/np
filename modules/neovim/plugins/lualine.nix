@@ -1,4 +1,4 @@
-{...}: {
+_: {
   plugins.lualine.settings = {
     theme = "catppuccin";
 

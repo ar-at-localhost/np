@@ -1,4 +1,4 @@
-{...}: {
+_: {
   plugins.dap = {
     signs = {
       dapBreakpoint = {

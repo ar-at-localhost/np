@@ -36,7 +36,7 @@
             ];
           };
           extraSpecialArgs = {
-            stdenv = pkgs.stdenv;
+            inherit (pkgs) stdenv;
           };
         };
         default = self.packages.${system}.np;
@@ -74,6 +74,7 @@
       in {
         default = pkgs.mkShell {
           packages = [
+            pkgs.statix
             pkgs.alejandra
             pkgs.lefthook
             pkgs.markdownlint-cli2
@@ -89,7 +90,7 @@
                 ];
               };
               extraSpecialArgs = {
-                stdenv = pkgs.stdenv;
+                inherit (pkgs) stdenv;
               };
             })
           ];

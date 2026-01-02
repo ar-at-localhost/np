@@ -1,4 +1,4 @@
-{...}: let
+_: let
   web = {
     __unkeyed-1 = "biome";
     __unkeyed-2 = "prettierd";

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   plugins.bufferline.settings = {
     options = {
       always_show_bufferline = true;

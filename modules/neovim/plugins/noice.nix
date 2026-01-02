@@ -1,4 +1,4 @@
-{...}: {
+_: {
   plugins.noice = {
     settings = {
       presets = {

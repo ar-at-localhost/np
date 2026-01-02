@@ -10,10 +10,13 @@ in {
     ./javascript.nix
     ./sql.nix
   ];
-
-  lsp.servers.html.enable = true;
-  lsp.servers.cssls.enable = true;
-  lsp.servers.tailwindcss.enable = true;
+  lsp = {
+    servers = {
+      html.enable = true;
+      cssls.enable = true;
+      tailwindcss.enable = true;
+    };
+  };
 
   plugins.conform-nvim = {
     settings = {

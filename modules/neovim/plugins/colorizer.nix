@@ -1,4 +1,4 @@
-{...}: {
+_: {
   plugins.colorizer.settings = {
     user_commands = true;
     user_default_options = {

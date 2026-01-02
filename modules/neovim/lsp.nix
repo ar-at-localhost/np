@@ -1,11 +1,15 @@
-{...}: {
-  lsp.inlayHints.enable = true;
-  lsp.servers.lua_ls.enable = true;
-  lsp.servers.jsonls.enable = true;
-  lsp.servers.marksman.enable = true;
-  lsp.servers.nil_ls.enable = true;
-  lsp.servers.taplo.enable = true;
-  lsp.servers.yamlls.enable = true;
+_: {
+  lsp = {
+    inlayHints.enable = true;
+    servers = {
+      lua_ls.enable = true;
+      jsonls.enable = true;
+      marksman.enable = true;
+      nil_ls.enable = true;
+      taplo.enable = true;
+      yamlls.enable = true;
+    };
+  };
 
   diagnostic.settings = {
     underline = true;
