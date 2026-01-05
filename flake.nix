@@ -5,12 +5,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     alejandra.url = "github:kamadorueda/alejandra";
+    proselint.url = "github:amperser/proselint";
   };
 
   outputs = {
     self,
     nixpkgs,
     nixvim,
+    proselint,
     ...
   }: let
     systems = [
@@ -71,6 +73,7 @@
     devShells = forEachSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
+        proselintLatest = proselint.packages.${system}.default;
       in {
         default = pkgs.mkShell {
           packages = [
@@ -81,6 +84,7 @@
             pkgs.markdownlint-cli
             pkgs.mdbook
             pkgs.prettierd
+            proselintLatest
             (nixvim.legacyPackages.${system}.makeNixvimWithModule {
               inherit pkgs;
               module = {

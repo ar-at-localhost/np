@@ -1,6 +1,6 @@
 # Presets
 
-Presets provide opt-in support for additional languages and tools.
+Provide opt-in support for additional languages and tools.
 Import them alongside the base module.
 
 Each preset adds LSP servers, formatters, tree-sitter grammars,
