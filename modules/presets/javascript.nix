@@ -6,10 +6,6 @@
     stop_on_first = true;
   };
 in {
-  extraPackages = [
-    pkgs.nodejs
-  ];
-
   lsp = {
     servers = {
       biome = {
