@@ -9,6 +9,7 @@
 - [Presets](./presets/README.md)
   - [C/C++](./presets/cpp.md)
   - [Docker](./presets/docker.md)
+  - [.NET](./presets/dotnet.md)
   - [JavaScript/TypeScript](./presets/javascript.md)
   - [Make](./presets/make.md)
   - [Python](./presets/python.md)

@@ -10,6 +10,7 @@ and sometimes DAP configurations.
 
 - **cpp**: C/C++ with clangd LSP and make support.
 - **docker**: Docker with dockerls and docker-compose LSP.
+- **dotnet**: .NET with omnisharp LSP and dotnet-format.
 - **javascript**: JavaScript/TypeScript with biome, eslint, vtsls.
 - **make**: Build system support.
 - **python**: Python with basedpyright and ruff/black.

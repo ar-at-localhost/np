@@ -41,6 +41,28 @@
             inherit (pkgs) stdenv;
           };
         };
+        np-full = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+          inherit pkgs;
+          module = {
+            imports = [
+              ./modules/neovim
+              ./nix/nixvim.nix
+              ./modules/presets/cpp.nix
+              ./modules/presets/docker.nix
+              ./modules/presets/dotnet.nix
+              ./modules/presets/javascript.nix
+              ./modules/presets/make.nix
+              ./modules/presets/python.nix
+              ./modules/presets/rust.nix
+              ./modules/presets/sql.nix
+              ./modules/presets/web.nix
+              ./modules/presets/xml.nix
+            ];
+          };
+          extraSpecialArgs = {
+            inherit (pkgs) stdenv;
+          };
+        };
         default = self.packages.${system}.np;
       }
     );
@@ -51,6 +73,13 @@
         program = "${self.packages.${system}.np}/bin/nvim";
         meta = {
           description = "Neovim with np configuration";
+        };
+      };
+      npf = {
+        type = "app";
+        program = "${self.packages.${system}.np-full}/bin/nvim";
+        meta = {
+          description = "Neovim with np configuration and all presets";
         };
       };
     });
