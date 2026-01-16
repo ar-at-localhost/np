@@ -1,5 +1,6 @@
 {
   opts = {
+    background = "light";
     mouse = "";
     number = true;
     relativenumber = true;
