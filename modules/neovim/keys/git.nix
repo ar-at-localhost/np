@@ -8,8 +8,14 @@
   {
     mode = "n";
     key = "<leader>gu";
+    action = "<cmd>Neogit<CR>";
+    options.desc = "Git: UI (Neogit)";
+  }
+  {
+    mode = "n";
+    key = "<leader>gU";
     action = "<cmd>lua Snacks.lazygit.open()<CR>";
-    options.desc = "Git: Open";
+    options.desc = "Git: UI (Lazygit)";
   }
   {
     mode = "n";
