@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  plugins.treesitter-textobjects.enable = true;
+
   plugins.treesitter = {
     folding.enable = true;
     nixvimInjections = true;
@@ -16,4 +18,12 @@
       yaml
     ];
   };
+
+  extraConfigLua = ''
+    require("nvim-treesitter-textobjects").setup {
+      move = {
+        set_jumps = true,
+      }
+    }
+  '';
 }

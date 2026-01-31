@@ -209,4 +209,228 @@
     action = "<cmd>lua require('conform').format({ async = true }) <CR>";
     options.desc = "Code: Format";
   }
+
+  # --------------- Tree-sitter based Code Navigation --------------- #
+  # --- Enable repeats --- #
+  {
+    mode = ["n" "x" "o"];
+    key = ";";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.repeatable_move").repeat_last_move_next()<CR>
+    '';
+    options.desc = "TS: Next Function Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = ",";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.repeatable_move").repeat_last_move_previous()<CR>
+    '';
+    options.desc = "TS: Next Function Start";
+  }
+
+  # --- Functions --- #
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgf";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Function Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgF";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Function Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGf";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Function End";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGF";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Function End";
+  }
+
+  # --- Classes --- #
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgc";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Class Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgC";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Class Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGc";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Class End";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGC";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_end("@class.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Class End";
+  }
+
+  # --- Loops --- #
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgl";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_start("@loop.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Loop Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgL";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_start("@loop.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Loop Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGl";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_end("@loop.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Loop End";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGL";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_end("@loop.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Loop End";
+  }
+
+  # --- Conditionals --- #
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgd";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_start("@conditional.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Conditional Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgD";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_start("@conditional.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Conditional Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGd";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_end("@conditional.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Conditional End";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGD";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_end("@conditional.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Conditional End";
+  }
+
+  # --- Scopes --- #
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgs";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_start("@scope.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Scope Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgS";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_start("@scope.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Scope Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGs";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_end("@scope.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Scope End";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGS";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_end("@scope.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Scope End";
+  }
+
+  # --- Blocks --- #
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgb";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_start("@block.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Block Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cgB";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_start("@block.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Block Start";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGb";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_next_end("@block.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Next Block End";
+  }
+  {
+    mode = ["n" "x" "o"];
+    key = "<leader>cGB";
+    action = ''
+      <cmd>lua require("nvim-treesitter-textobjects.move").goto_previous_end("@block.outer", "textobjects")<CR>
+    '';
+    options.desc = "TS: Previous Block End";
+  }
+  # --------------- --------------------------------- --------------- #
 ]

@@ -15,6 +15,14 @@
             group = "Code / LSP";
           }
           {
+            __unkeyed-1 = "<leader>cg";
+            group = "TS Object Nav (Start)";
+          }
+          {
+            __unkeyed-1 = "<leader>cG";
+            group = "TS Object Nav (End)";
+          }
+          {
             __unkeyed-1 = "<leader>d";
             group = "Debugger";
           }
