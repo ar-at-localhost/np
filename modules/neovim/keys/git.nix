@@ -1,6 +1,12 @@
 [
   {
     mode = "n";
+    key = "<leader>gc";
+    action = "<cmd>lua Snacks.picker.git_branches()<CR>";
+    options.desc = "Git: Checkout (Branches)";
+  }
+  {
+    mode = "n";
     key = "<leader>gu";
     action = "<cmd>lua Snacks.lazygit.open()<CR>";
     options.desc = "Git: Open";
