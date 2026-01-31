@@ -24,6 +24,12 @@
     options.desc = "Search: & Replace";
   }
   {
+    mode = "n";
+    key = "<leader>st";
+    action = "<cmd>Snacks.picker.todo_comments()<CR>";
+    options.desc = "Search: TODO Comments";
+  }
+  {
     mode = [
       "n"
       "x"

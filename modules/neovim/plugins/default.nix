@@ -46,6 +46,7 @@
     none-ls.enable = true;
     nui.enable = true;
     snacks.enable = true;
+    todo-comments.enable = true;
     toggleterm.enable = true;
     ts-autotag.enable = true;
     ts-comments.enable = true;
