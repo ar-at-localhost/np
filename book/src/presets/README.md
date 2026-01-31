@@ -1,7 +1,11 @@
 # Presets
 
-Provide opt-in support for additional languages and tools.
+Provide opt-in support for additional languages and development environments.
 Import them alongside the base module.
+
+> [!NOTE]
+> Presets might be renamed to `langs` in the future to better reflect their language
+> focus. For tool and feature extensions, see [Xtras](../xtras/README.md).
 
 Each preset adds LSP servers, formatters, tree-sitter grammars,
 and sometimes DAP configurations.

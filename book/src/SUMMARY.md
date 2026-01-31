@@ -17,6 +17,8 @@
   - [SQL](./presets/sql.md)
   - [Web](./presets/web.md)
   - [XML](./presets/xml.md)
+- [Xtras](./xtras/README.md)
+  - [Orgmode](./xtras/orgmode.md)
 - [FAQ](./faq.md)
 - [Contributing](./contributing.md)
 - [Roadmap](./roadmap.md)

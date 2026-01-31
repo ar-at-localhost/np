@@ -1,14 +1,13 @@
 # np
 
-> [!NOTE]
->
-> - `np` is NeoVim, NixVim, \_Next_Vim
-> - `np` is NeoVim Pod, NixVim Pod, NextVim Pod
-> - `np` is NeoPod, for Project Oriented Development
-> - `np` is No Pollution - Setting up Neovim for project? No problem.
-> - `np` is No Problem - when Setting up Neovim for a project.
+`np` is a NixVim (Neovim) configuration focused on development specific
+distribution of the Nvim. The goals is to create configs per project
+for extra ease of development using Nvim -- without messing up the Nvim configurations.
+The base of `np` is carefuly configured nvim that's easy to use regardless
+of the languages you work with. I can't say it is like LazyVim, but I can
+say it is inspired from it (while many design decisions violate LazyVim philosphy).
 
-Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors
+Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors.
 
 ---
 
@@ -19,9 +18,6 @@ Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors
 > improve it to ensure that it is really POD.
 
 ---
-
-> [!WARNING]
-> Docs are AI generated yet - might be in-accurate.
 
 ## Project Oriented Development
 
@@ -92,9 +88,17 @@ This pattern keeps your project configuration organized and allows Nix to merge
 the base `np` module with your project-specific overrides, creating a tailored
 Neovim instance per project.
 
-### Using Presets
+### Using Presets & Xtras
 
-For additional language support, import presets into your `nix/nixvim.nix`:
+`np` provides two categories of optional modules:
+
+- **Presets**: Language-specific support (LSP, formatters, tree-sitter)
+- **Xtras**: Tool and feature extensions
+
+> [!NOTE]
+> Presets might be renamed to `langs` in the future to better reflect their purpose.
+
+#### Individual Module Imports
 
 ```nix
 { np, ... }:
@@ -102,8 +106,9 @@ For additional language support, import presets into your `nix/nixvim.nix`:
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.python  # Adds Python LSP, formatters, and tree-sitter
-    np.nixvimModules.presets.rust    # Adds Rust LSP and tree-sitter
+    np.nixvimModules.presets.python  # Python LSP, formatters, tree-sitter
+    np.nixvimModules.presets.rust    # Rust LSP and tree-sitter
+    np.nixvimModules.xtras.orgmode   # Orgmode support
   ];
 
   # Your project-specific overrides
@@ -111,9 +116,33 @@ For additional language support, import presets into your `nix/nixvim.nix`:
 }
 ```
 
-Available presets: `cpp` (C/C++ with clangd), `docker` (Docker with dockerls),
-`javascript` (JS/TS with biome/eslint), `make`, `python`, `rust`, `sql`, `web`
-(full web stack), `xml`.
+#### Bulk Imports
+
+You can also import all presets or xtras at once:
+
+```nix
+{ np, ... }:
+
+{
+  imports = [
+    np.nixvimModules.base
+    np.nixvimModules.presets.all     # All language presets
+    np.nixvimModules.xtras.all       # All xtras
+  ];
+}
+```
+
+#### Available Modules
+
+**Presets** (language support):
+
+- `cpp` (C/C++ with clangd), `docker` (Docker with dockerls), `dotnet` (.NET),
+  `javascript` (JS/TS with biome/eslint), `make`, `python`, `rust`, `sql`,
+  `web` (full web stack), `xml`
+
+**Xtras** (tools/features):
+
+- `orgmode` - Orgmode support with org-bullets, org-modern, and headlines
 
 ## Quick Preview
 

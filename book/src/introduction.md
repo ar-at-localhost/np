@@ -9,7 +9,7 @@ project without polluting your global environment.
 ### Key Features
 
 - **No Pollution**: Project-specific configs via Nix flakes.
-- **Modular**: Base config + opt-in presets for languages/tools.
+- **Modular**: Base config + opt-in presets (languages) and xtras (tools/features).
 - **Nix-Powered**: Reproducible builds and easy overrides.
 
 ## Project Oriented Development

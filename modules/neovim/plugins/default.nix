@@ -41,6 +41,7 @@
     markview.enable = true;
     mini.enable = true;
     navic.enable = true;
+    neogit.enable = true;
     neo-tree.enable = true;
     noice.enable = true;
     none-ls.enable = true;
