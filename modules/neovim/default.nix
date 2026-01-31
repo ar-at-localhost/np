@@ -2,7 +2,7 @@
   imports = [
     ./autocmd.nix
     ./dap.nix
-    ./keys.nix
+    ./keys/default.nix
     ./lsp.nix
     ./opts.nix
     ./plugins
