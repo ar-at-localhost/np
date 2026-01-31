@@ -43,6 +43,10 @@
             group = "Notifications";
           }
           {
+            __unkeyed-1 = "<leader>p";
+            group = "Picker";
+          }
+          {
             __unkeyed-1 = "<leader>s";
             group = "Search";
           }
