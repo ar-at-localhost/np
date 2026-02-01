@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ccc00f6b.js";
+            window.path_to_searchindex_js = "searchindex-32ec49eb.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-cc0a3514.js"></script>
+        <script src="toc-a3c69816.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -183,7 +183,7 @@ project without polluting your global environment.</p>
 <h3 id="key-features"><a class="header" href="#key-features">Key Features</a></h3>
 <ul>
 <li><strong>No Pollution</strong>: Project-specific configs via Nix flakes.</li>
-<li><strong>Modular</strong>: Base config + opt-in presets for languages/tools.</li>
+<li><strong>Modular</strong>: Base config + opt-in presets (languages) and xtras (tools/features).</li>
 <li><strong>Nix-Powered</strong>: Reproducible builds and easy overrides.</li>
 </ul>
 <h2 id="project-oriented-development"><a class="header" href="#project-oriented-development">Project Oriented Development</a></h2>
@@ -511,13 +511,18 @@ Which-key to explore.</p>
 <h2 id="shrinking-the-config"><a class="header" href="#shrinking-the-config">Shrinking the Config</a></h2>
 <p>Remove unwanted parts by setting <code>enable = false</code> on modules.</p>
 <h2 id="extending"><a class="header" href="#extending">Extending</a></h2>
-<p>Add your own modules or presets on top.</p>
+<p>Add your own modules, presets (language support), or xtras (tools/features) on top.</p>
 <h2 id="no-custom-options"><a class="header" href="#no-custom-options">No Custom Options</a></h2>
 <p>Remember, <code>np</code> has no custom Nix options—only NixVim’s.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="presets"><a class="header" href="#presets">Presets</a></h1>
-<p>Provide opt-in support for additional languages and tools.
+<p>Provide opt-in support for additional languages and development environments.
 Import them alongside the base module.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Presets might be renamed to <code>langs</code> in the future to better reflect their language
+focus. For tool and feature extensions, see <a href="xtras/README.html">Xtras</a>.</p>
+</blockquote>
 <p>Each preset adds LSP servers, formatters, tree-sitter grammars,
 and sometimes DAP configurations.</p>
 <h2 id="available-presets"><a class="header" href="#available-presets">Available Presets</a></h2>
@@ -687,6 +692,63 @@ and sometimes DAP configurations.</p>
   inputs.np.nixvimModules.presets.xml
 ];
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="xtras"><a class="header" href="#xtras">Xtras</a></h1>
+<p>Provide opt-in support for additional tools and features beyond language support.
+Import them alongside the base module and any presets.</p>
+<p>Xtras focus on tools, workflows, and features rather than language-specific development.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Presets might be renamed to <code>langs</code> in the future to better distinguish them from
+xtras.</p>
+</blockquote>
+<h2 id="available-xtras"><a class="header" href="#available-xtras">Available Xtras</a></h2>
+<ul>
+<li><strong>orgmode</strong>: Orgmode support with org-bullets, org-modern, and headlines.</li>
+</ul>
+<p>See individual pages for details.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="orgmode"><a class="header" href="#orgmode">Orgmode</a></h1>
+<p>Provides Orgmode support with additional plugins for enhanced editing experience.</p>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<ul>
+<li><strong>orgmode</strong>: Core Orgmode functionality for note-taking, task management, and
+document organization</li>
+<li><strong>org-bullets</strong>: Enhanced bullet point styling for better readability</li>
+<li><strong>org-modern</strong>: Modern UI improvements and menu system for Orgmode</li>
+<li><strong>headlines</strong>: Enhanced headline styling and visual hierarchy</li>
+</ul>
+<h2 id="configuration-2"><a class="header" href="#configuration-2">Configuration</a></h2>
+<p>The orgmode extra automatically configures:</p>
+<ul>
+<li>Project-aware agenda files (<code>.nvim/orgfiles/**/*</code> in project root)</li>
+<li>Project-aware notes file (<code>.nvim/orgfiles/notes.org</code> in project root)</li>
+<li>Fallback to <code>~/orgfiles/**/*</code> and <code>~/orgfiles/refile.org</code> outside projects</li>
+<li>LSP support for org files</li>
+<li>Blink completion integration with orgmode sources</li>
+<li>Which-key integration under <code>&lt;leader&gt;o</code> prefix</li>
+</ul>
+<h2 id="usage-11"><a class="header" href="#usage-11">Usage</a></h2>
+<ol>
+<li>
+<p>Import the orgmode xtra:</p>
+<pre><code class="language-nix">{ np, ... }:
+{
+  imports = [
+    np.nixvimModules.base
+    np.nixvimModules.xtras.orgmode
+  ];
+}
+</code></pre>
+</li>
+<li>
+<p>Start using Orgmode with standard keybindings and workflows.</p>
+</li>
+<li>
+<p>Create org files in your project’s <code>.nvim/orgfiles/</code> directory for
+project-specific notes.</p>
+</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="faq"><a class="header" href="#faq">FAQ</a></h1>
 <blockquote>
