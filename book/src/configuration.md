@@ -35,7 +35,7 @@ Remove unwanted parts by setting `enable = false` on modules.
 
 ## Extending
 
-Add your own modules or presets on top.
+Add your own modules, presets (language support), or xtras (tools/features) on top.
 
 ## No Custom Options
 

@@ -35,6 +35,7 @@
             imports = [
               ./modules/neovim
               ./nix/nixvim.nix
+              ./modules/xtras/orgmode.nix
             ];
           };
           extraSpecialArgs = {
@@ -47,16 +48,8 @@
             imports = [
               ./modules/neovim
               ./nix/nixvim.nix
-              ./modules/presets/cpp.nix
-              ./modules/presets/docker.nix
-              ./modules/presets/dotnet.nix
-              ./modules/presets/javascript.nix
-              ./modules/presets/make.nix
-              ./modules/presets/python.nix
-              ./modules/presets/rust.nix
-              ./modules/presets/sql.nix
-              ./modules/presets/web.nix
-              ./modules/presets/xml.nix
+              ./modules/presets
+              ./modules/xtras
             ];
           };
           extraSpecialArgs = {
@@ -86,7 +79,9 @@
 
     nixvimModules = {
       base = ./modules/neovim;
+
       presets = {
+        all = ./modules/presets;
         cpp = ./modules/presets/cpp.nix;
         docker = ./modules/presets/docker.nix;
         javascript = ./modules/presets/javascript.nix;
@@ -96,6 +91,11 @@
         sql = ./modules/presets/sql.nix;
         web = ./modules/presets/web.nix;
         xml = ./modules/presets/xml.nix;
+      };
+
+      xtras = {
+        all = ./modules/xtras;
+        orgmode = ./modules/xtras/orgmode.nix;
       };
     };
 
