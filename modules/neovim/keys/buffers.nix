@@ -49,6 +49,16 @@
   }
   {
     mode = "n";
+    key = "<leader>br";
+    action.__raw = ''
+      function()
+        Snacks.rename.rename_file()
+      end
+    '';
+    options.desc = "Buffers: Rename current buffer";
+  }
+  {
+    mode = "n";
     key = "<leader>bp";
     action = "<cmd>BufferLineTogglePin";
     options.desc = "Buffers: Toggle Pin";
