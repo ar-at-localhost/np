@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./auto-session.nix
     ./blink-cmp.nix
     ./bufferline.nix
     ./colorizer.nix
@@ -17,6 +18,7 @@
   ];
 
   plugins = {
+    auto-session.enable = true;
     blink-cmp.enable = true;
     bufferline.enable = true;
     colorizer.enable = true;

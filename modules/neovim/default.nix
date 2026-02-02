@@ -1,6 +1,5 @@
 {
   imports = [
-    ./autocmd.nix
     ./dap.nix
     ./keys/default.nix
     ./lsp.nix
