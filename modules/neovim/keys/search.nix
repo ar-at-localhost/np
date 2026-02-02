@@ -1,6 +1,12 @@
 [
   {
     mode = "n";
+    key = "<leader>s<space>";
+    action = "<cmd>lua Snacks.picker.smart()<CR>";
+    options.desc = "Search: Files (Smart)";
+  }
+  {
+    mode = "n";
     key = "<leader>sf";
     action = "<cmd>lua Snacks.picker.files()<CR>";
     options.desc = "Search: Files";
