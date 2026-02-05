@@ -15,6 +15,10 @@
             group = "Code / LSP";
           }
           {
+            __unkeyed-1 = "<leader>c.";
+            group = "More Options";
+          }
+          {
             __unkeyed-1 = "<leader>cg";
             group = "TS Object Nav (Start)";
           }
@@ -49,6 +53,10 @@
           {
             __unkeyed-1 = "<leader>s";
             group = "Search";
+          }
+          {
+            __unkeyed-1 = "<leader>u";
+            group = "UI";
           }
           {
             __unkeyed-1 = "<leader>w";
