@@ -3,13 +3,13 @@
   plugins.treesitter-textobjects.enable = true;
 
   plugins.treesitter = {
-    enable = true;
-    highlight.enable = true;
-    folding.enable = true;
-    indent.enable = true;
     nixvimInjections = true;
 
     settings = {
+      enable = true;
+      highlight.enable = true;
+      folding.enable = true;
+      indent.enable = true;
     };
 
     grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
