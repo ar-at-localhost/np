@@ -50,9 +50,10 @@ project per project, follow this pattern:
 
 - In your project's `flake.nix`, build and include the tailored Neovim as a dependency.
 
-  > [!IMPORTANT]
+  > [!WARNING]
   > `np` is built on `nixpkgs-unstable` and requires its consumer to provide
   > packages from it. Using a stable version of `nixpkgs` will result in errors.
+  > NixOS 25.11 compatible port is in progress & will be updated soon.
 
   ```nix
   {
