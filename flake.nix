@@ -2,10 +2,14 @@
   description = "NixVim Pod | Neovim Pod | Neovim Project Oriented Development | No problem";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     alejandra.url = "github:kamadorueda/alejandra";
     proselint.url = "github:amperser/proselint";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
