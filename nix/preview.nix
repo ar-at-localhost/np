@@ -9,8 +9,8 @@ nixvim.legacyPackages.${system}.makeNixvimWithModule {
   module = {
     imports = [
       ../modules
-      ../modules/langs
-      ../modules/xtras
+      (import ../modules/langs/exports.nix).all
+      (import ../modules/xtras/exports.nix).all
     ];
   };
   extraSpecialArgs = {

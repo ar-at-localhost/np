@@ -1,4 +1,4 @@
 {
-  all = ./default.nix;
-  orgmode = ./orgmode.nix;
+  all = import ./default.nix;
+  orgmode = import ./orgmode.nix;
 }
