@@ -14,8 +14,8 @@ Provides Orgmode support with additional plugins for enhanced editing experience
 
 The orgmode extra automatically configures:
 
-- Project-aware agenda files (`.nvim/orgfiles/**/*` in project root)
-- Project-aware notes file (`.nvim/orgfiles/notes.org` in project root)
+- Project-aware agenda files (`orgfiles/**/*` in project root)
+- Project-aware notes file (`orgfiles/notes.org` in project root)
 - Fallback to `~/orgfiles/**/*` and `~/orgfiles/refile.org` outside projects
 - LSP support for org files
 - Blink completion integration with orgmode sources

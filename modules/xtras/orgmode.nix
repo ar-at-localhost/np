@@ -47,8 +47,8 @@
     local org_default_notes_file
 
     if project_root then
-      org_agenda_files = vim.fs.joinpath(project_root, ".nvim", "orgfiles/**/*")
-      org_default_notes_file = vim.fs.joinpath(project_root, ".nvim", "orgfiles/notes.org")
+      org_agenda_files = vim.fs.joinpath(project_root, "orgfiles/**/*.org")
+      org_default_notes_file = vim.fs.joinpath(project_root, "orgfiles/notes.org")
     else
       org_agenda_files = "~/orgfiles/**/*"
       org_default_notes_file = "~/orgfiles/refile.org"
