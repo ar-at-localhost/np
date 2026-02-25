@@ -3,3 +3,4 @@
 .direnv
 result
 book/out/
+.envrc
