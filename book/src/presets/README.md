@@ -17,6 +17,7 @@ and sometimes DAP configurations.
 - **dotnet**: .NET with omnisharp LSP and dotnet-format.
 - **javascript**: JavaScript/TypeScript with biome, eslint, vtsls.
 - **make**: Build system support.
+- **mjml**: MJML markup with beautify support.
 - **python**: Python with basedpyright and ruff/black.
 - **rust**: Rust with rust-analyzer.
 - **sql**: SQL syntax highlighting.

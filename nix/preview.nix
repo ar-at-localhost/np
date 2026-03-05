@@ -10,6 +10,7 @@ nixvim.legacyPackages.${system}.makeNixvimWithModule {
     imports = [
       ../modules/neovim
       ../modules/presets
+      ../modules/langs
       ../modules/xtras/orgmode.nix
     ];
   };

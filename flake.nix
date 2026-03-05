@@ -62,6 +62,11 @@
         all = ./modules/xtras;
         orgmode = ./modules/xtras/orgmode.nix;
       };
+
+      langs = {
+        all = ./modules/langs;
+        mjml = ./modules/langs/mjml.nix;
+      };
     };
 
     devShells = forEachSystem (

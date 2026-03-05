@@ -138,7 +138,7 @@ You can also import all presets or xtras at once:
 **Presets** (language support):
 
 - `cpp` (C/C++ with clangd), `docker` (Docker with dockerls), `dotnet` (.NET),
-  `javascript` (JS/TS with biome/eslint), `make`, `python`, `rust`, `sql`,
+  `javascript` (JS/TS with biome/eslint), `make`, `mjml`, `python`, `rust`, `sql`,
   `web` (full web stack), `xml`
 
 **Xtras** (tools/features):
