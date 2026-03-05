@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   dependencies.tree-sitter.enable = true;
+  plugins.treesitter-textobjects.enable = true;
 
   plugins.treesitter = {
     enable = true;
@@ -24,12 +25,6 @@
       yaml
     ];
   };
-
-  plugins.treesitter-textobjects.enable = true;
-
-  extraConfigLuaPre = ''
-    local foo = 'bar';
-  '';
 
   extraConfigLua = ''
     require("nvim-treesitter-textobjects").setup {
