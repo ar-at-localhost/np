@@ -69,8 +69,6 @@
     })
 
     require("org-bullets").setup()
-    require("headlines").setup()
-
     vim.lsp.enable('org')
   '';
 
