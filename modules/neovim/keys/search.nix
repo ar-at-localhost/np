@@ -31,6 +31,12 @@
   }
   {
     mode = "n";
+    key = "<leader>ss";
+    action = "<cmd>Snacks.scratch.select()<CR>";
+    options.desc = "Search: Scratch";
+  }
+  {
+    mode = "n";
     key = "<leader>st";
     action = "<cmd>Snacks.picker.todo_comments()<CR>";
     options.desc = "Search: TODO Comments";

@@ -49,6 +49,12 @@
   }
   {
     mode = "n";
+    key = "<leader>bS";
+    action = "<cmd>lua Snacks.scratch()<CR>";
+    options.desc = "Buffers: Toggle Scratch";
+  }
+  {
+    mode = "n";
     key = "<leader>br";
     action.__raw = ''
       function()

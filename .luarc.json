@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "LuaJIT",
+    "path": ["./modules/neovim/lua/?.lua", "./modules/neovim/lua/?/init.lua"]
+  },
+  "workspace": {
+    "library": [
+      "./modules/neovim/lua",
+      "${env:VIMRUNTIME}/lua",
+      "${3rd}/luv/library"
+    ]
+  },
+  "diagnostics": {
+    "globals": ["_M"]
+  }
+}

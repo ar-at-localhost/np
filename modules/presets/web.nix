@@ -9,6 +9,7 @@ in {
   imports = [
     ./javascript.nix
     ./sql.nix
+    ./xml.nix
   ];
   lsp = {
     servers = {
@@ -32,6 +33,5 @@ in {
     html
     http
     sql
-    xml
   ];
 }

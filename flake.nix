@@ -3,13 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     alejandra.url = "github:kamadorueda/alejandra";
     proselint.url = "github:amperser/proselint";
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixvim,
     proselint,
@@ -25,55 +29,16 @@
   in {
     formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    packages = forEachSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        np = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          inherit pkgs;
-          module = {
-            imports = [
-              ./modules/neovim
-              ./nix/nixvim.nix
-              ./modules/xtras/orgmode.nix
-            ];
-          };
-          extraSpecialArgs = {
-            inherit (pkgs) stdenv;
-          };
-        };
-        np-full = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          inherit pkgs;
-          module = {
-            imports = [
-              ./modules/neovim
-              ./nix/nixvim.nix
-              ./modules/presets
-              ./modules/xtras
-            ];
-          };
-          extraSpecialArgs = {
-            inherit (pkgs) stdenv;
-          };
-        };
-        default = self.packages.${system}.np;
-      }
-    );
-
-    apps = forEachSystem (system: {
+    apps = forEachSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      preview = import ./nix/preview.nix {
+        inherit system pkgs nixvim;
+        inherit (pkgs) lib stdenv;
+      };
+    in {
       np = {
         type = "app";
-        program = "${self.packages.${system}.np}/bin/nvim";
-        meta = {
-          description = "Neovim with np configuration";
-        };
-      };
-      npf = {
-        type = "app";
-        program = "${self.packages.${system}.np-full}/bin/nvim";
-        meta = {
-          description = "Neovim with np configuration and all presets";
-        };
+        program = "${preview}/bin/nvim";
       };
     });
 
@@ -113,18 +78,11 @@
             pkgs.markdownlint-cli
             pkgs.mdbook
             pkgs.prettierd
+            pkgs.stylua
             proselintLatest
-            (nixvim.legacyPackages.${system}.makeNixvimWithModule {
-              inherit pkgs;
-              module = {
-                imports = [
-                  ./modules/neovim
-                  ./nix/nixvim.nix
-                ];
-              };
-              extraSpecialArgs = {
-                inherit (pkgs) stdenv;
-              };
+            (import ./nix/nixvim.nix {
+              inherit system pkgs nixvim;
+              inherit (pkgs) lib stdenv;
             })
           ];
 

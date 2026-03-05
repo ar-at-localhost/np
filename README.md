@@ -77,7 +77,7 @@ project per project, follow this pattern:
           (nixvim.legacyPackages.${system}.makeNixvimWithModule {
             inherit pkgs;
             module = ./nix/nixvim.nix;
-            extraSpecialArgs = { inherit np; };
+            extraSpecialArgs = { inherit (pkgs) stdenv; };
           })
         ];
       };
