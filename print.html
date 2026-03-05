@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-202a4da3.js";
+            window.path_to_searchindex_js = "searchindex-f9e63d9c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a3c69816.js"></script>
@@ -278,7 +278,7 @@ packages from it. Using a stable version of <code>nixpkgs</code> will result in 
         (nixvim.legacyPackages.${system}.makeNixvimWithModule {
           inherit pkgs;
           module = ./nix/nixvim.nix;
-          extraSpecialArgs = { inherit np; };
+          extraSpecialArgs = { inherit (pkgs) stdenv; };
         })
       ];
     };
@@ -366,8 +366,6 @@ and non-pollution—everything stays project-specific via Nix.</p>
 <p><img src="ss/which-key.png" alt="Which-key"></p>
 <h4 id="lsp"><a class="header" href="#lsp">LSP</a></h4>
 <p><img src="ss/lsp.png" alt="LSP"></p>
-<h4 id="lazygit"><a class="header" href="#lazygit">Lazygit</a></h4>
-<p><img src="ss/lazygit.png" alt="Lazygit"></p>
 <h2 id="language-support"><a class="header" href="#language-support">Language Support</a></h2>
 <h3 id="lsp-servers"><a class="header" href="#lsp-servers">LSP Servers</a></h3>
 <p>Out-of-the-box support for common config and markup languages:</p>
@@ -397,7 +395,7 @@ Which-key to explore.</p>
 <li><strong>Explorer</strong> (<code>&lt;leader&gt;e</code>): Neo-tree toggle/reveal</li>
 <li><strong>Code/LSP</strong> (<code>&lt;leader&gt;c</code>): Rename, actions, definitions, diagnostics</li>
 <li><strong>Search</strong> (<code>&lt;leader&gt;s</code>): Files, buffers, grep, replace</li>
-<li><strong>Git</strong> (<code>&lt;leader&gt;g</code>): Lazygit, hunks, blame, log</li>
+<li><strong>Git</strong> (<code>&lt;leader&gt;g</code>): Neogit, hunks, blame, log</li>
 <li><strong>Notifications</strong> (<code>&lt;leader&gt;n</code>): History, dismiss</li>
 <li><strong>Session</strong> (<code>&lt;leader&gt;sl</code>): Load last session</li>
 <li><strong>Debugger</strong> (<code>&lt;leader&gt;d</code>): Breakpoints, stepping, UI</li>
@@ -406,7 +404,7 @@ Which-key to explore.</p>
 <ul>
 <li><code>&lt;leader&gt;sf</code>: Search files</li>
 <li><code>&lt;leader&gt;cd</code>: Go to LSP definitions</li>
-<li><code>&lt;leader&gt;gg</code>: Open Lazygit</li>
+<li><code>&lt;leader&gt;gu</code>: Open neogit</li>
 <li><code>&lt;C-s&gt;</code>: Save file (insert/visual/normal modes)</li>
 </ul>
 <p><img src="../ss/which-key.png" alt="Which-Key Screenshot"></p>
@@ -532,6 +530,7 @@ and sometimes DAP configurations.</p>
 <li><strong>dotnet</strong>: .NET with omnisharp LSP and dotnet-format.</li>
 <li><strong>javascript</strong>: JavaScript/TypeScript with biome, eslint, vtsls.</li>
 <li><strong>make</strong>: Build system support.</li>
+<li><strong>mjml</strong>: MJML markup with beautify support.</li>
 <li><strong>python</strong>: Python with basedpyright and ruff/black.</li>
 <li><strong>rust</strong>: Rust with rust-analyzer.</li>
 <li><strong>sql</strong>: SQL syntax highlighting.</li>
