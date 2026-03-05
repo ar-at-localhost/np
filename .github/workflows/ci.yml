@@ -19,8 +19,8 @@ jobs:
         run: nix run nixpkgs#alejandra -- --check .
       - name: Lint Markdown
         run: nix run nixpkgs#markdownlint-cli -- --help | head -1 && nix run nixpkgs#markdownlint-cli . || echo "Markdownlint not available, skipping"
-      - name: Run `nix build`
-        run: nix build .
+      - name: Check flake
+        run: nix flake check
 
   deploy-docs:
     if: github.ref == 'refs/heads/main'
