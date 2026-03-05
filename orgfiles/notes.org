@@ -1,0 +1,7 @@
+* TODO Make picker's behavior to resume by default
+  Currently pickers are always starting fresh, causing inconveniences of typing the query again.
+  It might be rather useful to make them always resume (if existing!).
+  [2026-03-15 Sun]
+
+* TODO Orgmode
+** TODO Enable configurations
