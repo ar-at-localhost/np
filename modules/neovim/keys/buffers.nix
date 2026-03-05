@@ -37,6 +37,12 @@
   }
   {
     mode = "n";
+    key = "<leader>bD";
+    action = "<cmd>lua Snacks.wipe()<CR>";
+    options.desc = "Buffers: Wipe Current";
+  }
+  {
+    mode = "n";
     key = "<leader>bo";
     action = "<cmd>BufferLineCloseOthers<CR>";
     options.desc = "Buffers: Delete Other";

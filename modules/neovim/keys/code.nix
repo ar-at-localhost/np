@@ -42,9 +42,9 @@
   {
     mode = "n";
     key = "<leader>cT";
-    action = "<cmd>Trouble diagnostics<CR>";
+    action = "<cmd>Trouble diagnostics toggle<CR>";
     options = {
-      desc = "LSP: Diagnostics (Trouble)";
+      desc = "LSP: Toggle Diagnostics (Trouble)";
     };
   }
   {
@@ -148,6 +148,12 @@
     key = "<leader>cI";
     action = "<cmd>lua Snacks.picker.lsp_config()<CR>";
     options.desc = "Code: LSP Info";
+  }
+  {
+    mode = ["n" "v"];
+    key = "<leader>c0";
+    action = "<cmd>LspRestart<CR>";
+    options.desc = "Code: LSP Restart";
   }
   {
     mode = "n";

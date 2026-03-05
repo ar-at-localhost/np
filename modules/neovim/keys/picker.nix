@@ -15,4 +15,14 @@
     action = "<cmd>lua Snacks.picker.command_history()<CR>";
     options.desc = "Picker: Commands History";
   }
+  {
+    mode = "n";
+    key = "<leader>pp";
+    action.__raw = ''
+      function()
+        Snacks.picker.recent()
+      end
+    '';
+    options.desc = "Picker: Recent files";
+  }
 ]
