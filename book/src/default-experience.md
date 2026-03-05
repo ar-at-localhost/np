@@ -44,10 +44,6 @@ The interface uses Catppuccin theme with integrations for a cohesive look.
 
 ![LSP](./ss/lsp.png)
 
-#### Lazygit
-
-![Lazygit](./ss/lazygit.png)
-
 ## Language Support
 
 ### LSP Servers
@@ -84,7 +80,7 @@ Which-key to explore.
 - **Explorer** (`<leader>e`): Neo-tree toggle/reveal
 - **Code/LSP** (`<leader>c`): Rename, actions, definitions, diagnostics
 - **Search** (`<leader>s`): Files, buffers, grep, replace
-- **Git** (`<leader>g`): Lazygit, hunks, blame, log
+- **Git** (`<leader>g`): Neogit, hunks, blame, log
 - **Notifications** (`<leader>n`): History, dismiss
 - **Session** (`<leader>sl`): Load last session
 - **Debugger** (`<leader>d`): Breakpoints, stepping, UI
@@ -93,7 +89,7 @@ Which-key to explore.
 
 - `<leader>sf`: Search files
 - `<leader>cd`: Go to LSP definitions
-- `<leader>gg`: Open Lazygit
+- `<leader>gu`: Open neogit
 - `<C-s>`: Save file (insert/visual/normal modes)
 
 ![Which-Key Screenshot](../ss/which-key.png)

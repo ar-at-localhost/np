@@ -13,12 +13,6 @@
   }
   {
     mode = "n";
-    key = "<leader>gU";
-    action = "<cmd>lua Snacks.lazygit.open()<CR>";
-    options.desc = "Git: UI (Lazygit)";
-  }
-  {
-    mode = "n";
     key = "<leader>gl";
     action = "<cmd>lua Snacks.picker.git_log()<CR>";
     options.desc = "Git: Log";
