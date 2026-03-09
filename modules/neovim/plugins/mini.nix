@@ -9,12 +9,6 @@ _: {
         textobject = "<leader>/";
       };
     };
-    diff = {
-      view = {
-        style = "sign";
-      };
-    };
-    notify = {};
     pairs = {};
     surround = {
       mappings = {
