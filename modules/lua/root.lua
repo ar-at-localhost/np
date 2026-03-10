@@ -12,7 +12,9 @@ _M.dirs.root = get_root()
 
 if _M.dirs.root then
   _M.dirs.nvim = _M.dirs.root .. "/.nvim"
+  _M.dirs.org = _M.dirs.root .. "/orgfiles"
   local dirs = { "sessions", "scratchs" }
+
   for _, dir in ipairs(dirs) do
     local dir_path = string.format("%s/%s", _M.dirs.nvim, dir)
     vim.system({

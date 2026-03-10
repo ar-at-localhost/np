@@ -33,43 +33,26 @@
     ];
 
   extraConfigLua = ''
-    local function get_project_root()
-      local cwd = vim.fn.getcwd()
-      -- Check for git root or flake.nix
-      local git_root = vim.fs.root(cwd, ".git")
-      local nix_root = vim.fs.root(cwd, "flake.nix")
-      return git_root or nix_root
-    end
+    local org = _M.dirs.org
+    local config = {}
 
-    local project_root = get_project_root()
-
-    local org_agenda_files
-    local org_default_notes_file
-
-    if project_root then
-      org_agenda_files = vim.fs.joinpath(project_root, "orgfiles/**/*.org")
-      org_default_notes_file = vim.fs.joinpath(project_root, "orgfiles/notes.org")
-    else
-      org_agenda_files = "~/orgfiles/**/*"
-      org_default_notes_file = "~/orgfiles/refile.org"
+    if org then
+      config.org_agenda_files = org .. "/**/*.org"
+      config.org_default_notes_file = org .. "/notes.org"
     end
 
     local Menu = require("org-modern.menu")
-    require('orgmode').setup({
-      org_agenda_files = org_agenda_files,
-      org_default_notes_file = org_default_notes_file,
-
-      ui = {
-        menu = {
-          handler = function(data)
-    	Menu:new():open(data)
-          end,
-        },
+    config.ui = {
+      menu = {
+        handler = function(data)
+          Menu:new():open(data)
+        end,
       },
-    })
+    }
 
+    require("orgmode").setup(config)
     require("org-bullets").setup()
-    vim.lsp.enable('org')
+    vim.lsp.enable("org")
   '';
 
   plugins.blink-cmp.settings = {
