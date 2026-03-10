@@ -10,7 +10,7 @@
   module = {
     imports = [
       ../modules
-      (import ../modules/xtras/exports.nix).all
+      ../modules/xtras
     ];
 
     clipboard = {

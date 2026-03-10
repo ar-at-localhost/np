@@ -43,8 +43,25 @@
 
     nixvimModules = {
       base = ./modules;
-      langs = ./modules/langs/exports.nix;
-      xtras = ./modules/xtras/exports.nix;
+      langs = {
+        all = ./modules/langs;
+        cpp = ./modules/langs/cpp.nix;
+        css = ./modules/langs/css.nix;
+        docker = ./modules/langs/docker.nix;
+        dotnet = ./modules/langs/dotnet.nix;
+        javascript = ./modules/langs/javascript.nix;
+        make = ./modules/langs/make.nix;
+        mjml = ./modules/langs/mjml.nix;
+        pyton = ./modules/langs/python.nix;
+        rust = ./modules/langs/rust.nix;
+        sql = ./modules/langs/sql.nix;
+        web = ./modules/langs/web.nix;
+        xml = ./modules/langs/xml.nix;
+      };
+      xtras = {
+        all = ./modules/xtras;
+        orgmode = ./modules/xtras/orgmode.nix;
+      };
     };
 
     devShells = forEachSystem (
