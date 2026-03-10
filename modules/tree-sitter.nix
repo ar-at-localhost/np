@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   dependencies.tree-sitter.enable = true;
-  plugins.treesitter-textobjects.enable = true;
 
   plugins.treesitter = {
     enable = true;
@@ -22,12 +21,4 @@
       yaml
     ];
   };
-
-  extraConfigLua = ''
-    require("nvim-treesitter-textobjects").setup({
-      move = {
-        set_jumps = true,
-      },
-    })
-  '';
 }
