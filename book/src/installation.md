@@ -19,8 +19,8 @@
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.javascript
-    # Add more presets as needed
+    np.nixvimModules.langs.javascript
+    # Add more langs as needed
   ];
 
   # Your overrides

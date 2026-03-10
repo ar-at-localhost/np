@@ -27,7 +27,7 @@
 - **Keybindings**: Keys must be grouped logically, prioritizing usability over
   traditional conventions. This may or may not align with standard traditions.
 - Follow NixVim best practices.
-- Keep presets minimal and focused.
+- Keep langs minimal and focused.
 - Update docs for any changes.
 - Strictly follow No Pollution policy.
 - Create Lint-free Contributions.

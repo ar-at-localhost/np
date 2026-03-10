@@ -40,33 +40,16 @@
         type = "app";
         program = "${preview}/bin/nvim";
       };
+      np-print-init = {
+        type = "app";
+        program = "${preview}/bin/nixvim-print-init";
+      };
     });
 
     nixvimModules = {
-      base = ./modules/neovim;
-
-      presets = {
-        all = ./modules/presets;
-        cpp = ./modules/presets/cpp.nix;
-        docker = ./modules/presets/docker.nix;
-        javascript = ./modules/presets/javascript.nix;
-        make = ./modules/presets/make.nix;
-        python = ./modules/presets/python.nix;
-        rust = ./modules/presets/rust.nix;
-        sql = ./modules/presets/sql.nix;
-        web = ./modules/presets/web.nix;
-        xml = ./modules/presets/xml.nix;
-      };
-
-      xtras = {
-        all = ./modules/xtras;
-        orgmode = ./modules/xtras/orgmode.nix;
-      };
-
-      langs = {
-        all = ./modules/langs;
-        mjml = ./modules/langs/mjml.nix;
-      };
+      base = ./modules;
+      langs = ./modules/langs/exports.nix;
+      xtras = ./modules/xtras/exports.nix;
     };
 
     devShells = forEachSystem (

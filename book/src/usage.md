@@ -4,7 +4,7 @@
 
 To configure `np`, create a `nix/nixvim.nix` file in your project. This file is
 a NixVim module where you can import `np`'s base configuration, add language
-presets, and apply your own overrides.
+langs, and apply your own overrides.
 
 Here is an example for a Python project:
 
@@ -15,7 +15,7 @@ Here is an example for a Python project:
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.python
+    np.nixvimModules.langs.python
   ];
 
   # Add project-specific settings
@@ -43,7 +43,7 @@ the full `flake.nix` setup.
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.web  # Includes JS/TS, HTML, CSS, etc.
+    np.nixvimModules.langs.web  # Includes JS/TS, HTML, CSS, etc.
   ];
 }
 ```

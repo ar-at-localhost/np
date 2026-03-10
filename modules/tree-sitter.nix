@@ -27,10 +27,10 @@
   };
 
   extraConfigLua = ''
-    require("nvim-treesitter-textobjects").setup {
+    require("nvim-treesitter-textobjects").setup({
       move = {
         set_jumps = true,
-      }
-    }
+      },
+    })
   '';
 }

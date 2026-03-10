@@ -1,4 +1,4 @@
-# C/C++ Preset
+# C/C++ Lang
 
 Adds support for C and C++ development.
 
@@ -6,14 +6,14 @@ Adds support for C and C++ development.
 
 - **LSP**: clangd for code intelligence.
 - **Tree-Sitter**: Grammars for C and C++.
-- **Dependencies**: Imports the `make` preset for build system support.
+- **Dependencies**: Imports the `make` lang for build system support.
 
 ## Usage
 
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.cpp
+  inputs.np.nixvimModules.langs.cpp
 ];
 ```
 

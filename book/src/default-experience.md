@@ -1,7 +1,7 @@
 # Default Experience
 
 This page describes the out-of-the-box experience when using `np` without any
-presets or customizations. It's the base NixVim configuration that provides a
+langs or customizations. It's the base NixVim configuration that provides a
 complete, project-oriented Neovim setup.
 
 ## Overview
@@ -159,7 +159,7 @@ This enables Project-Oriented Development—no global state, per-project persist
 
 The base is designed to be extended:
 
-- Add presets for language support (see [Presets](./presets/README.md))
+- Add langs for language support (see [Langs](./langs/README.md))
 - Override NixVim options in your project's `nix/nixvim.nix`
 - Disable unwanted plugins or add new ones
 
@@ -168,7 +168,7 @@ For example, to add Python support:
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.python
+  inputs.np.nixvimModules.langs.python
 ];
 ```
 

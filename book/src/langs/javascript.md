@@ -1,4 +1,4 @@
-# JavaScript/TypeScript Preset
+# JavaScript/TypeScript Lang
 
 Adds support for JavaScript and TypeScript.
 
@@ -15,6 +15,6 @@ Adds support for JavaScript and TypeScript.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.javascript
+  inputs.np.nixvimModules.langs.javascript
 ];
 ```

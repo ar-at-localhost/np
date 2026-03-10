@@ -1,4 +1,4 @@
-# Rust Preset
+# Rust Lang
 
 Adds Rust support.
 
@@ -12,6 +12,6 @@ Adds Rust support.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.rust
+  inputs.np.nixvimModules.langs.rust
 ];
 ```

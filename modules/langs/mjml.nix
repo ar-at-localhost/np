@@ -1,5 +1,20 @@
 _: {
-  plugins.treesitter.languageRegister.xml = ["mjml"];
+  imports = [./css.nix ./xml.nix];
+
+  plugins = {
+    treesitter.languageRegister.xml = ["mjml"];
+
+    conform-nvim = {
+      settings = {
+        formatters_by_ft = {
+          xml = {
+            unkeyed-2 = "injected";
+          };
+        };
+      };
+    };
+  };
+
   extraConfigLuaPre = ''
     vim.filetype.add({
       extension = {

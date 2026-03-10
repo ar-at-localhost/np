@@ -1,4 +1,4 @@
-# .NET Preset
+# .NET Lang
 
 Adds support for .NET development.
 
@@ -13,7 +13,7 @@ Adds support for .NET development.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.dotnet
+  inputs.np.nixvimModules.langs.dotnet
 ];
 ```
 

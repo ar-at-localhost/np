@@ -1,7 +1,7 @@
 {
   imports = [
     ./dap.nix
-    ./keys/default.nix
+    ./keys
     ./lsp.nix
     ./opts.nix
     ./plugins

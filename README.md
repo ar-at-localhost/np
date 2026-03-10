@@ -9,21 +9,18 @@ say it is inspired from it (while many design decisions violate LazyVim philosph
 
 Thanks to Nvim, NixVim, Nix, LazyVim and many all plugin authors.
 
----
+_This project is a movement towards my concept of POD. See
+[POD](https://ar-at-localhost.github.io/np/pod.html)._
 
-> [!WARNING]
-> I'm just initiating the project - and these modules,
-> might be still polluting user home somewhere, though less likely.
-> Goal is simple: Don't let it pollute your home or OS, so I'll
-> improve it to ensure that it is really POD.
+## Quick Preview
 
----
+To try `np` without setting up a project, run the base configuration:
 
-## Project Oriented Development
+```bash
+nix run .#np
+```
 
-This project is a movement towards my concept of POD. See
-[POD](https://ar-at-localhost.github.io/np/pod.html) for details on the Project
-Oriented Development concept.
+This launches Neovim with the full `np`. [Screenshots](https://ar-at-localhost.github.io/np/default-experience.html#ui--theme).
 
 ## Usage
 
@@ -50,10 +47,8 @@ project per project, follow this pattern:
 
 - In your project's `flake.nix`, build and include the tailored Neovim as a dependency.
 
-  > [!WARNING]
-  > `np` is built on `nixpkgs-unstable` and requires its consumer to provide
-  > packages from it. Using a stable version of `nixpkgs` will result in errors.
-  > NixOS 25.11 compatible port is in progress & will be updated soon.
+  > `np` is built on NixOS unstable pkgs and NixOS 25.11.
+  > Use `main` / `nixos-25.11` branches accordingly.
 
   ```nix
   {
@@ -93,11 +88,8 @@ Neovim instance per project.
 
 `np` provides two categories of optional modules:
 
-- **Presets**: Language-specific support (LSP, formatters, tree-sitter)
+- **Langs**: Language-specific support (LSP, formatters, tree-sitter)
 - **Xtras**: Tool and feature extensions
-
-> [!NOTE]
-> Presets might be renamed to `langs` in the future to better reflect their purpose.
 
 #### Individual Module Imports
 
@@ -107,8 +99,8 @@ Neovim instance per project.
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.python  # Python LSP, formatters, tree-sitter
-    np.nixvimModules.presets.rust    # Rust LSP and tree-sitter
+    np.nixvimModules.langs.python  # Python LSP, formatters, tree-sitter
+    np.nixvimModules.langs.rust    # Rust LSP and tree-sitter
     np.nixvimModules.xtras.orgmode   # Orgmode support
   ];
 
@@ -127,7 +119,7 @@ You can also import all presets or xtras at once:
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.all     # All language presets
+    np.nixvimModules.langs.all     # All language modules
     np.nixvimModules.xtras.all       # All xtras
   ];
 }
@@ -135,7 +127,7 @@ You can also import all presets or xtras at once:
 
 #### Available Modules
 
-**Presets** (language support):
+**Langs** (language support):
 
 - `cpp` (C/C++ with clangd), `docker` (Docker with dockerls), `dotnet` (.NET),
   `javascript` (JS/TS with biome/eslint), `make`, `mjml`, `python`, `rust`, `sql`,
@@ -145,32 +137,16 @@ You can also import all presets or xtras at once:
 
 - `orgmode` - Orgmode support with org-bullets, org-modern, and headlines
 
-## Quick Preview
-
-To try `np` without setting up a project, run the base configuration:
-
-```bash
-nix run .#np
-```
-
-This launches Neovim with the minimal base setup for a quick test.
-
-## Default Experience
-
-### Screenshots?
-
-Yes, [some are here](https://ar-at-localhost.github.io/np/default-experience.html#ui--theme).
-
 ## FAQ
 
 > Which language(s) support is configured out of the box?
 
-**Answer**: Only Nix, Markdown, TOML/YAML, Bash, and Lua.
+**Answer**: Nix, Markdown, TOML/YAML, Bash, and Lua.
 
 > Which languages are supported?
 
-**Answer**: Many languages are provided as modules for opt-in basic support.
-See [presets](./modules/presets/) for available options.
+**Answer**: Many languages are supported via opt-in modules.
+See [langs](./modules/langs/) for available options.
 
 ## Roadmap
 

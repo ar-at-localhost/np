@@ -7,4 +7,4 @@
 > Which languages are supported?
 
 **Answer**: Many languages are provided as modules for opt-in basic support.
-See [presets](./presets/README.md) for available options.
+See [langs](./langs/README.md) for available options.

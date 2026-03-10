@@ -7,7 +7,7 @@
     - [x] Markdown
     - [x] TOML/YAML
 - [x] Create comprehensive docs
-- [x] Add language presets
+- [x] Add language langs
   - [x] JavaScript / TypeScript
   - [x] Rust
   - [x] Python
@@ -15,7 +15,7 @@
   - [x] Docker
   - [x] Web (full stack)
   - [x] Others (make, sql, xml)
-- [ ] Add more presets
+- [ ] Add more langs
   - [ ] Go
-- [ ] Improve preset documentation and examples
+- [ ] Improve lang documentation and examples
 - [ ] Support other NixOS channels, than current Unstable

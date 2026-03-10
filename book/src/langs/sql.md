@@ -1,4 +1,4 @@
-# SQL Preset
+# SQL Lang
 
 Adds SQL support.
 
@@ -11,6 +11,6 @@ Adds SQL support.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.sql
+  inputs.np.nixvimModules.langs.sql
 ];
 ```

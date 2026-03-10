@@ -1,16 +1,15 @@
-# Presets
+# Langs
 
 Provide opt-in support for additional languages and development environments.
 Import them alongside the base module.
 
 > [!NOTE]
-> Presets might be renamed to `langs` in the future to better reflect their language
-> focus. For tool and feature extensions, see [Xtras](../xtras/README.md).
+> For tool and feature extensions, see [Xtras](../xtras/README.md).
 
-Each preset adds LSP servers, formatters, tree-sitter grammars,
+Each lang adds LSP servers, formatters, tree-sitter grammars,
 and sometimes DAP configurations.
 
-## Available Presets
+## Available Langs
 
 - **cpp**: C/C++ with clangd LSP and make support.
 - **docker**: Docker with dockerls and docker-compose LSP.

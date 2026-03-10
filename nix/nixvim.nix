@@ -9,7 +9,7 @@
   inherit pkgs;
   module = {
     imports = [
-      ../modules/neovim
+      ../modules
     ];
 
     clipboard = {

@@ -44,7 +44,7 @@
   }
   {
     mode = "n";
-    key = "<leader><tab>c";
+    key = "<leader><tab>C";
     action = "<cmd>tabclose<CR>";
     options.desc = "Close Tab";
   }

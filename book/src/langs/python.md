@@ -1,4 +1,4 @@
-# Python Preset
+# Python Lang
 
 Adds support for Python development.
 
@@ -13,7 +13,7 @@ Adds support for Python development.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.python
+  inputs.np.nixvimModules.langs.python
 ];
 ```
 

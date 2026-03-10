@@ -1,3 +1,5 @@
-{
-  imports = [./orgmode.nix];
+_: {
+  imports = [
+    ./orgmode.nix
+  ];
 }

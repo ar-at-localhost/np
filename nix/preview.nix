@@ -8,10 +8,9 @@ nixvim.legacyPackages.${system}.makeNixvimWithModule {
   inherit pkgs;
   module = {
     imports = [
-      ../modules/neovim
-      ../modules/presets
+      ../modules
       ../modules/langs
-      ../modules/xtras/orgmode.nix
+      ../modules/xtras
     ];
   };
   extraSpecialArgs = {

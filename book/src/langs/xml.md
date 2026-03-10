@@ -1,4 +1,4 @@
-# XML Preset
+# XML Lang
 
 Adds XML support.
 
@@ -11,6 +11,6 @@ Adds XML support.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.xml
+  inputs.np.nixvimModules.langs.xml
 ];
 ```

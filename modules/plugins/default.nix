@@ -27,7 +27,6 @@
     dap-ui.enable = true;
     dap-view.enable = true;
     dap-virtual-text.enable = true;
-    diffview.enable = true;
     edgy.enable = true;
     emmet.enable = true;
     fzf-lua.enable = false;
@@ -39,7 +38,6 @@
     lsp-signature.enable = true;
     lsp-status.enable = true;
     lualine.enable = true;
-    luau-lsp.enable = pkgs.stdenv.hostPlatform.system != "x86_64-darwin";
     markview.enable = true;
     mini.enable = true;
     navic.enable = true;
@@ -50,7 +48,6 @@
     nui.enable = true;
     snacks.enable = true;
     todo-comments.enable = true;
-    toggleterm.enable = true;
     ts-autotag.enable = true;
     ts-comments.enable = true;
     treesitter.enable = true;

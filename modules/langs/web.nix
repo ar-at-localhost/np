@@ -10,26 +10,24 @@ in {
     ./javascript.nix
     ./sql.nix
     ./xml.nix
+    ./css.nix
   ];
+
   lsp = {
     servers = {
       html.enable = true;
-      cssls.enable = true;
-      tailwindcss.enable = true;
     };
   };
 
   plugins.conform-nvim = {
     settings = {
       formatters_by_ft = {
-        css = web;
         html = web;
       };
     };
   };
 
   plugins.treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-    css
     html
     http
     sql

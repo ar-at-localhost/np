@@ -1,4 +1,4 @@
-# Docker Preset
+# Docker Lang
 
 Adds Docker support.
 
@@ -12,6 +12,6 @@ Adds Docker support.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.docker
+  inputs.np.nixvimModules.langs.docker
 ];
 ```

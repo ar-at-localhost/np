@@ -1,4 +1,4 @@
-# Make Preset
+# Make Lang
 
 Adds Makefile support.
 
@@ -11,6 +11,6 @@ Adds Makefile support.
 ```nix
 imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.make
+  inputs.np.nixvimModules.langs.make
 ];
 ```
