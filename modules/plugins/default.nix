@@ -33,7 +33,6 @@
     git-conflict.enable = true;
     gitsigns.enable = true;
     grug-far.enable = true;
-    lazydev.enable = true;
     lsp.enable = true;
     lsp-signature.enable = true;
     lsp-status.enable = true;
