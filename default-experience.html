@@ -35,10 +35,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f9e63d9c.js";
+            window.path_to_searchindex_js = "searchindex-61d75769.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-a3c69816.js"></script>
+        <script src="toc-85cccc9f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,7 +176,7 @@
                     <main>
                         <h1 id="default-experience"><a class="header" href="#default-experience">Default Experience</a></h1>
 <p>This page describes the out-of-the-box experience when using <code>np</code> without any
-presets or customizations. It’s the base NixVim configuration that provides a
+langs or customizations. It’s the base NixVim configuration that provides a
 complete, project-oriented Neovim setup.</p>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p><code>np</code> ships with a curated set of plugins, keybindings, and settings designed
@@ -310,14 +310,14 @@ Which-key to explore.</p>
 <h2 id="customization"><a class="header" href="#customization">Customization</a></h2>
 <p>The base is designed to be extended:</p>
 <ul>
-<li>Add presets for language support (see <a href="./presets/README.html">Presets</a>)</li>
+<li>Add langs for language support (see <a href="./langs/README.html">Langs</a>)</li>
 <li>Override NixVim options in your project’s <code>nix/nixvim.nix</code></li>
 <li>Disable unwanted plugins or add new ones</li>
 </ul>
 <p>For example, to add Python support:</p>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.python
+  inputs.np.nixvimModules.langs.python
 ];
 </code></pre>
 <p>This keeps your setup clean and reproducible.</p>

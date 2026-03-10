@@ -35,10 +35,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f9e63d9c.js";
+            window.path_to_searchindex_js = "searchindex-61d75769.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-a3c69816.js"></script>
+        <script src="toc-85cccc9f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -178,7 +178,7 @@
 <h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
 <p>To configure <code>np</code>, create a <code>nix/nixvim.nix</code> file in your project. This file is
 a NixVim module where you can import <code>np</code>’s base configuration, add language
-presets, and apply your own overrides.</p>
+langs, and apply your own overrides.</p>
 <p>Here is an example for a Python project:</p>
 <pre><code class="language-nix"># nix/nixvim.nix
 { np, ... }:
@@ -186,7 +186,7 @@ presets, and apply your own overrides.</p>
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.python
+    np.nixvimModules.langs.python
   ];
 
   # Add project-specific settings
@@ -209,7 +209,7 @@ the full <code>flake.nix</code> setup.</p>
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.web  # Includes JS/TS, HTML, CSS, etc.
+    np.nixvimModules.langs.web  # Includes JS/TS, HTML, CSS, etc.
   ];
 }
 </code></pre>

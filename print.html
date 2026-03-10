@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f9e63d9c.js";
+            window.path_to_searchindex_js = "searchindex-61d75769.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-a3c69816.js"></script>
+        <script src="toc-85cccc9f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -183,7 +183,7 @@ project without polluting your global environment.</p>
 <h3 id="key-features"><a class="header" href="#key-features">Key Features</a></h3>
 <ul>
 <li><strong>No Pollution</strong>: Project-specific configs via Nix flakes.</li>
-<li><strong>Modular</strong>: Base config + opt-in presets (languages) and xtras (tools/features).</li>
+<li><strong>Modular</strong>: Base config + opt-in langs (languages) and xtras (tools/features).</li>
 <li><strong>Nix-Powered</strong>: Reproducible builds and easy overrides.</li>
 </ul>
 <h2 id="project-oriented-development"><a class="header" href="#project-oriented-development">Project Oriented Development</a></h2>
@@ -242,8 +242,8 @@ packages from it.</li>
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.javascript
-    # Add more presets as needed
+    np.nixvimModules.langs.javascript
+    # Add more langs as needed
   ];
 
   # Your overrides
@@ -296,7 +296,7 @@ packages from it. Using a stable version of <code>nixpkgs</code> will result in 
 <h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
 <p>To configure <code>np</code>, create a <code>nix/nixvim.nix</code> file in your project. This file is
 a NixVim module where you can import <code>np</code>’s base configuration, add language
-presets, and apply your own overrides.</p>
+langs, and apply your own overrides.</p>
 <p>Here is an example for a Python project:</p>
 <pre><code class="language-nix"># nix/nixvim.nix
 { np, ... }:
@@ -304,7 +304,7 @@ presets, and apply your own overrides.</p>
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.python
+    np.nixvimModules.langs.python
   ];
 
   # Add project-specific settings
@@ -327,14 +327,14 @@ the full <code>flake.nix</code> setup.</p>
 {
   imports = [
     np.nixvimModules.base
-    np.nixvimModules.presets.web  # Includes JS/TS, HTML, CSS, etc.
+    np.nixvimModules.langs.web  # Includes JS/TS, HTML, CSS, etc.
   ];
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="default-experience"><a class="header" href="#default-experience">Default Experience</a></h1>
 <p>This page describes the out-of-the-box experience when using <code>np</code> without any
-presets or customizations. It’s the base NixVim configuration that provides a
+langs or customizations. It’s the base NixVim configuration that provides a
 complete, project-oriented Neovim setup.</p>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p><code>np</code> ships with a curated set of plugins, keybindings, and settings designed
@@ -468,14 +468,14 @@ Which-key to explore.</p>
 <h2 id="customization"><a class="header" href="#customization">Customization</a></h2>
 <p>The base is designed to be extended:</p>
 <ul>
-<li>Add presets for language support (see <a href="presets/README.html">Presets</a>)</li>
+<li>Add langs for language support (see <a href="langs/README.html">Langs</a>)</li>
 <li>Override NixVim options in your project’s <code>nix/nixvim.nix</code></li>
 <li>Disable unwanted plugins or add new ones</li>
 </ul>
 <p>For example, to add Python support:</p>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.python
+  inputs.np.nixvimModules.langs.python
 ];
 </code></pre>
 <p>This keeps your setup clean and reproducible.</p>
@@ -509,21 +509,20 @@ Which-key to explore.</p>
 <h2 id="shrinking-the-config"><a class="header" href="#shrinking-the-config">Shrinking the Config</a></h2>
 <p>Remove unwanted parts by setting <code>enable = false</code> on modules.</p>
 <h2 id="extending"><a class="header" href="#extending">Extending</a></h2>
-<p>Add your own modules, presets (language support), or xtras (tools/features) on top.</p>
+<p>Add your own modules, langs (language support), or xtras (tools/features) on top.</p>
 <h2 id="no-custom-options"><a class="header" href="#no-custom-options">No Custom Options</a></h2>
 <p>Remember, <code>np</code> has no custom Nix options—only NixVim’s.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="presets"><a class="header" href="#presets">Presets</a></h1>
+<h1 id="langs"><a class="header" href="#langs">Langs</a></h1>
 <p>Provide opt-in support for additional languages and development environments.
 Import them alongside the base module.</p>
 <blockquote class="blockquote-tag blockquote-tag-note">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
-<p>Presets might be renamed to <code>langs</code> in the future to better reflect their language
-focus. For tool and feature extensions, see <a href="xtras/README.html">Xtras</a>.</p>
+<p>For tool and feature extensions, see <a href="xtras/README.html">Xtras</a>.</p>
 </blockquote>
-<p>Each preset adds LSP servers, formatters, tree-sitter grammars,
+<p>Each lang adds LSP servers, formatters, tree-sitter grammars,
 and sometimes DAP configurations.</p>
-<h2 id="available-presets"><a class="header" href="#available-presets">Available Presets</a></h2>
+<h2 id="available-langs"><a class="header" href="#available-langs">Available Langs</a></h2>
 <ul>
 <li><strong>cpp</strong>: C/C++ with clangd LSP and make support.</li>
 <li><strong>docker</strong>: Docker with dockerls and docker-compose LSP.</li>
@@ -539,24 +538,24 @@ and sometimes DAP configurations.</p>
 </ul>
 <p>See individual pages for details.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="cc-preset"><a class="header" href="#cc-preset">C/C++ Preset</a></h1>
+<h1 id="cc-lang"><a class="header" href="#cc-lang">C/C++ Lang</a></h1>
 <p>Adds support for C and C++ development.</p>
 <h2 id="what-it-includes"><a class="header" href="#what-it-includes">What It Includes</a></h2>
 <ul>
 <li><strong>LSP</strong>: clangd for code intelligence.</li>
 <li><strong>Tree-Sitter</strong>: Grammars for C and C++.</li>
-<li><strong>Dependencies</strong>: Imports the <code>make</code> preset for build system support.</li>
+<li><strong>Dependencies</strong>: Imports the <code>make</code> lang for build system support.</li>
 </ul>
 <h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.cpp
+  inputs.np.nixvimModules.langs.cpp
 ];
 </code></pre>
 <h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
 <p>Ensure clangd is available in your environment.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="docker-preset"><a class="header" href="#docker-preset">Docker Preset</a></h1>
+<h1 id="docker-lang"><a class="header" href="#docker-lang">Docker Lang</a></h1>
 <p>Adds Docker support.</p>
 <h2 id="what-it-includes-1"><a class="header" href="#what-it-includes-1">What It Includes</a></h2>
 <ul>
@@ -566,11 +565,11 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-2"><a class="header" href="#usage-2">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.docker
+  inputs.np.nixvimModules.langs.docker
 ];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="net-preset"><a class="header" href="#net-preset">.NET Preset</a></h1>
+<h1 id="net-lang"><a class="header" href="#net-lang">.NET Lang</a></h1>
 <p>Adds support for .NET development.</p>
 <h2 id="what-it-includes-2"><a class="header" href="#what-it-includes-2">What It Includes</a></h2>
 <ul>
@@ -581,13 +580,13 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-3"><a class="header" href="#usage-3">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.dotnet
+  inputs.np.nixvimModules.langs.dotnet
 ];
 </code></pre>
 <h2 id="notes-1"><a class="header" href="#notes-1">Notes</a></h2>
 <p>Requires .NET SDK and the tools in your PATH or Nix environment.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="javascripttypescript-preset"><a class="header" href="#javascripttypescript-preset">JavaScript/TypeScript Preset</a></h1>
+<h1 id="javascripttypescript-lang"><a class="header" href="#javascripttypescript-lang">JavaScript/TypeScript Lang</a></h1>
 <p>Adds support for JavaScript and TypeScript.</p>
 <h2 id="what-it-includes-3"><a class="header" href="#what-it-includes-3">What It Includes</a></h2>
 <ul>
@@ -600,11 +599,11 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-4"><a class="header" href="#usage-4">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.javascript
+  inputs.np.nixvimModules.langs.javascript
 ];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="make-preset"><a class="header" href="#make-preset">Make Preset</a></h1>
+<h1 id="make-lang"><a class="header" href="#make-lang">Make Lang</a></h1>
 <p>Adds Makefile support.</p>
 <h2 id="what-it-includes-4"><a class="header" href="#what-it-includes-4">What It Includes</a></h2>
 <ul>
@@ -613,11 +612,11 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-5"><a class="header" href="#usage-5">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.make
+  inputs.np.nixvimModules.langs.make
 ];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="python-preset"><a class="header" href="#python-preset">Python Preset</a></h1>
+<h1 id="python-lang"><a class="header" href="#python-lang">Python Lang</a></h1>
 <p>Adds support for Python development.</p>
 <h2 id="what-it-includes-5"><a class="header" href="#what-it-includes-5">What It Includes</a></h2>
 <ul>
@@ -628,13 +627,13 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-6"><a class="header" href="#usage-6">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.python
+  inputs.np.nixvimModules.langs.python
 ];
 </code></pre>
 <h2 id="notes-2"><a class="header" href="#notes-2">Notes</a></h2>
 <p>Requires Python and the tools in your PATH or Nix environment.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="rust-preset"><a class="header" href="#rust-preset">Rust Preset</a></h1>
+<h1 id="rust-lang"><a class="header" href="#rust-lang">Rust Lang</a></h1>
 <p>Adds Rust support.</p>
 <h2 id="what-it-includes-6"><a class="header" href="#what-it-includes-6">What It Includes</a></h2>
 <ul>
@@ -644,11 +643,11 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-7"><a class="header" href="#usage-7">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.rust
+  inputs.np.nixvimModules.langs.rust
 ];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="sql-preset"><a class="header" href="#sql-preset">SQL Preset</a></h1>
+<h1 id="sql-lang"><a class="header" href="#sql-lang">SQL Lang</a></h1>
 <p>Adds SQL support.</p>
 <h2 id="what-it-includes-7"><a class="header" href="#what-it-includes-7">What It Includes</a></h2>
 <ul>
@@ -657,15 +656,15 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-8"><a class="header" href="#usage-8">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.sql
+  inputs.np.nixvimModules.langs.sql
 ];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="web-preset"><a class="header" href="#web-preset">Web Preset</a></h1>
+<h1 id="web-lang"><a class="header" href="#web-lang">Web Lang</a></h1>
 <p>Full-stack web development support.</p>
 <h2 id="what-it-includes-8"><a class="header" href="#what-it-includes-8">What It Includes</a></h2>
 <ul>
-<li>Imports the <code>javascript</code> preset.</li>
+<li>Imports the <code>javascript</code> lang.</li>
 <li><strong>LSP</strong>: HTML, CSS, Tailwind CSS.</li>
 <li><strong>Formatters</strong>: For HTML/CSS.</li>
 <li><strong>Tree-Sitter</strong>: CSS, HTML, HTTP, SQL, XML.</li>
@@ -673,13 +672,13 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-9"><a class="header" href="#usage-9">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.web
+  inputs.np.nixvimModules.langs.web
 ];
 </code></pre>
 <h2 id="notes-3"><a class="header" href="#notes-3">Notes</a></h2>
 <p>Covers front-end and some back-end tools.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="xml-preset"><a class="header" href="#xml-preset">XML Preset</a></h1>
+<h1 id="xml-lang"><a class="header" href="#xml-lang">XML Lang</a></h1>
 <p>Adds XML support.</p>
 <h2 id="what-it-includes-9"><a class="header" href="#what-it-includes-9">What It Includes</a></h2>
 <ul>
@@ -688,19 +687,14 @@ and sometimes DAP configurations.</p>
 <h2 id="usage-10"><a class="header" href="#usage-10">Usage</a></h2>
 <pre><code class="language-nix">imports = [
   inputs.np.nixvimModules.base
-  inputs.np.nixvimModules.presets.xml
+  inputs.np.nixvimModules.langs.xml
 ];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="xtras"><a class="header" href="#xtras">Xtras</a></h1>
 <p>Provide opt-in support for additional tools and features beyond language support.
-Import them alongside the base module and any presets.</p>
+Import them alongside the base module and any langs.</p>
 <p>Xtras focus on tools, workflows, and features rather than language-specific development.</p>
-<blockquote class="blockquote-tag blockquote-tag-note">
-<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
-<p>Presets might be renamed to <code>langs</code> in the future to better distinguish them from
-xtras.</p>
-</blockquote>
 <h2 id="available-xtras"><a class="header" href="#available-xtras">Available Xtras</a></h2>
 <ul>
 <li><strong>orgmode</strong>: Orgmode support with org-bullets, org-modern, and headlines.</li>
@@ -758,7 +752,7 @@ project-specific notes.</p>
 <p>Which languages are supported?</p>
 </blockquote>
 <p><strong>Answer</strong>: Many languages are provided as modules for opt-in basic support.
-See <a href="presets/README.html">presets</a> for available options.</p>
+See <a href="langs/README.html">langs</a> for available options.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="contributing"><a class="header" href="#contributing">Contributing</a></h1>
 <h2 id="development-setup"><a class="header" href="#development-setup">Development Setup</a></h2>
@@ -789,7 +783,7 @@ not be merged. All configurations must remain project-specific and isolated.</li
 <li><strong>Keybindings</strong>: Keys must be grouped logically, prioritizing usability over
 traditional conventions. This may or may not align with standard traditions.</li>
 <li>Follow NixVim best practices.</li>
-<li>Keep presets minimal and focused.</li>
+<li>Keep langs minimal and focused.</li>
 <li>Update docs for any changes.</li>
 <li>Strictly follow No Pollution policy.</li>
 <li>Create Lint-free Contributions.</li>
@@ -810,7 +804,7 @@ traditional conventions. This may or may not align with standard traditions.</li
 </ul>
 </li>
 <li><input disabled="" type="checkbox" checked=""> Create comprehensive docs</li>
-<li><input disabled="" type="checkbox" checked=""> Add language presets
+<li><input disabled="" type="checkbox" checked=""> Add language langs
 <ul>
 <li><input disabled="" type="checkbox" checked=""> JavaScript / TypeScript</li>
 <li><input disabled="" type="checkbox" checked=""> Rust</li>
@@ -821,12 +815,12 @@ traditional conventions. This may or may not align with standard traditions.</li
 <li><input disabled="" type="checkbox" checked=""> Others (make, sql, xml)</li>
 </ul>
 </li>
-<li><input disabled="" type="checkbox"> Add more presets
+<li><input disabled="" type="checkbox"> Add more langs
 <ul>
 <li><input disabled="" type="checkbox"> Go</li>
 </ul>
 </li>
-<li><input disabled="" type="checkbox"> Improve preset documentation and examples</li>
+<li><input disabled="" type="checkbox"> Improve lang documentation and examples</li>
 <li><input disabled="" type="checkbox"> Support other NixOS channels, than current Unstable</li>
 </ul>
 
