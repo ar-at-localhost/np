@@ -3,7 +3,8 @@ local function get_root()
   -- Check for git root or flake.nix
   local git_root = vim.fs.root(cwd, ".git")
   local nix_root = vim.fs.root(cwd, "flake.nix")
-  return git_root or nix_root
+  local devenv_root = vim.fs.root(cwd, "devenv.nix")
+  return git_root or nix_root or devenv_root
 end
 
 _M = _M or {}
