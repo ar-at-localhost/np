@@ -2,102 +2,110 @@
   description = "NixVim Pod | Neovim Pod | Neovim Project Oriented Development | No problem";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+
     alejandra.url = "github:kamadorueda/alejandra";
     proselint.url = "github:amperser/proselint";
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     nixpkgs,
+    nixpkgs-unstable,
+    flake-utils,
     nixvim,
     proselint,
     ...
-  }: let
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-      "x86_64-darwin"
-      "aarch64-darwin"
-    ];
-    forEachSystem = nixpkgs.lib.genAttrs systems;
-  in {
-    formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.alejandra);
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      overlay-unstable = _: _: {
+        unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
 
-    apps = forEachSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [overlay-unstable];
+        config.allowUnfree = true;
+      };
+
+      proselintLatest = proselint.packages.${system}.default;
+
       preview = import ./nix/preview.nix {
         inherit system pkgs nixvim;
         inherit (pkgs) lib stdenv;
       };
-    in {
-      np = {
-        type = "app";
-        program = "${preview}/bin/nvim";
-      };
-      np-print-init = {
-        type = "app";
-        program = "${preview}/bin/nixvim-print-init";
-      };
-    });
 
-    nixvimModules = {
-      base = ./modules;
-      langs = {
-        all = ./modules/langs;
-        cpp = ./modules/langs/cpp.nix;
-        css = ./modules/langs/css.nix;
-        docker = ./modules/langs/docker.nix;
-        dotnet = ./modules/langs/dotnet.nix;
-        javascript = ./modules/langs/javascript.nix;
-        make = ./modules/langs/make.nix;
-        mjml = ./modules/langs/mjml.nix;
-        pyton = ./modules/langs/python.nix;
-        rust = ./modules/langs/rust.nix;
-        sql = ./modules/langs/sql.nix;
-        web = ./modules/langs/web.nix;
-        xml = ./modules/langs/xml.nix;
+      customNixvim = import ./nix/nixvim.nix {
+        inherit system pkgs nixvim;
+        inherit (pkgs) lib stdenv;
       };
-      xtras = {
-        all = ./modules/xtras;
-        orgmode = ./modules/xtras/orgmode.nix;
+    in {
+      formatter = pkgs.alejandra;
+
+      apps = {
+        np = {
+          type = "app";
+          program = "${preview}/bin/nvim";
+        };
+        np-print-init = {
+          type = "app";
+          program = "${preview}/bin/nixvim-print-init";
+        };
+      };
+
+      devShells.default = pkgs.mkShell {
+        packages = [
+          pkgs.statix
+          pkgs.alejandra
+          pkgs.lefthook
+          pkgs.markdownlint-cli2
+          pkgs.markdownlint-cli
+          pkgs.mdbook
+          pkgs.prettierd
+          pkgs.stylua
+          proselintLatest
+          customNixvim
+        ];
+
+        shellHook = ''
+          if [ ! -f .git/hooks/pre-commit ]; then
+            echo "Installing lefthook hooks..."
+            ${pkgs.lefthook}/bin/lefthook install
+          fi
+        '';
+      };
+    })
+    // {
+      nixvimModules = {
+        base = ./modules;
+        langs = {
+          all = ./modules/langs;
+          cpp = ./modules/langs/cpp.nix;
+          css = ./modules/langs/css.nix;
+          docker = ./modules/langs/docker.nix;
+          dotnet = ./modules/langs/dotnet.nix;
+          javascript = ./modules/langs/javascript.nix;
+          make = ./modules/langs/make.nix;
+          mjml = ./modules/langs/mjml.nix;
+          python = ./modules/langs/python.nix;
+          rust = ./modules/langs/rust.nix;
+          sql = ./modules/langs/sql.nix;
+          web = ./modules/langs/web.nix;
+          xml = ./modules/langs/xml.nix;
+        };
+        xtras = {
+          all = ./modules/xtras;
+          orgmode = ./modules/xtras/orgmode.nix;
+        };
       };
     };
-
-    devShells = forEachSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-        proselintLatest = proselint.packages.${system}.default;
-      in {
-        default = pkgs.mkShell {
-          packages = [
-            pkgs.statix
-            pkgs.alejandra
-            pkgs.lefthook
-            pkgs.markdownlint-cli2
-            pkgs.markdownlint-cli
-            pkgs.mdbook
-            pkgs.prettierd
-            pkgs.stylua
-            proselintLatest
-            (import ./nix/nixvim.nix {
-              inherit system pkgs nixvim;
-              inherit (pkgs) lib stdenv;
-            })
-          ];
-
-          shellHook = ''
-            if [ ! -f .git/hooks/pre-commit ]; then
-              echo "Installing lefthook hooks..."
-              lefthook install
-            fi
-          '';
-        };
-      }
-    );
-  };
 }
