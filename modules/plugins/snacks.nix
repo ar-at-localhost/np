@@ -10,7 +10,7 @@
     quickfile.enabled = true;
     scratch = {
       enabled = true;
-      root.__raw = "_M.root";
+      root.__raw = "_M.dirs.scratchs";
     };
     scope.enabled = true;
     rename.enabled = true;

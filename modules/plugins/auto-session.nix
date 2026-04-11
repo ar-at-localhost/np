@@ -5,7 +5,7 @@
     auto_restore = true;
     single_session_mode = true;
     close_filetypes_on_save = ["checkhealth" "neo-tree" "snacks_terminal"];
-    root_dir.__raw = "_M.root .. '.nvim/sessions'";
+    root_dir.__raw = "_M.dirs.sessions";
     post_restore_cmds = ["Neotree show"];
   };
 }
